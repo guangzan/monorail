@@ -1,0 +1,5 @@
+interface:
+  display_name: "Rail Align"
+  short_description: "Align on a plan — light or map mode"
+policy:
+  allow_implicit_invocation: false

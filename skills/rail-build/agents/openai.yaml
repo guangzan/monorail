@@ -1,0 +1,5 @@
+interface:
+  display_name: "Rail Build"
+  short_description: "Implement one local work issue"
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Rail Grill"
+  short_description: "Stateless grilling when there is no codebase"
+policy:
+  allow_implicit_invocation: false

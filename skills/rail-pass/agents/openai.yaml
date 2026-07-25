@@ -1,0 +1,5 @@
+interface:
+  display_name: "Rail Pass"
+  short_description: "Compact conversation into a pass document"
+policy:
+  allow_implicit_invocation: false

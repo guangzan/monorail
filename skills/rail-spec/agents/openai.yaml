@@ -1,0 +1,5 @@
+interface:
+  display_name: "Rail Spec"
+  short_description: "Synthesize conversation into a local spec"
+policy:
+  allow_implicit_invocation: false

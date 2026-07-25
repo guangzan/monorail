@@ -1,0 +1,5 @@
+interface:
+  display_name: "Rail Setup"
+  short_description: "Configure a repo for rail skills"
+policy:
+  allow_implicit_invocation: false
