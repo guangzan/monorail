@@ -56,6 +56,6 @@ Each issue file must include:
 
 ### Completion
 
-Files written; tell the user to work the frontier with `/rail-build` (one issue per session, clear context between).
+Files written; tell the user to work the frontier with **`/rail-build`** (one issue per session, clear context between). Do **not** suggest `/implement`, `/triage`, or other foreign-pack equivalents.
 
 Near context limits: stop and suggest `/rail-pass` instead of publishing a degraded slice set.

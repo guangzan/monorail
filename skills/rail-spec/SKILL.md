@@ -57,7 +57,7 @@ If durable sources exist but a **few** gaps block a coherent spec, ask only thos
 
 Write `docs/monorail/<feature-slug>/spec.md` using the template below.
 
-Stop. Suggest `/rail-slice` as the next human step.
+Stop. Tell the user the **only** next human step on the main chain is **`/rail-slice`** (writes `docs/monorail/<slug>/issues/NN-*.md`). Do **not** suggest foreign-pack skills with similar jobs — e.g. `/to-tickets`, `/to-issues`, `/to-prd`, `/to-spec` — even if those skills are installed. Do **not** open GitHub/GitLab Issues for rail work.
 
 Near context limits: stop and suggest `/rail-pass` instead of writing a degraded spec.
 

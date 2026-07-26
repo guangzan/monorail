@@ -18,6 +18,10 @@ A **flow** is a path through skills. Most work follows the **main chain**.
 
 Prefer keeping align → spec → slice in one window. If the window breaks, durable `align.md` / map still feed `/rail-spec`. Clear context between each `/rail-build`.
 
+## In-pack handoffs only
+
+When a rail skill finishes, suggest the **next rail skill by exact name** (`/rail-align`, `/rail-spec`, `/rail-slice`, `/rail-build`, …). Do **not** substitute lookalike skills from other packs (e.g. `/to-spec` for `/rail-spec`, `/to-tickets` / `/to-issues` for `/rail-slice`) even if those are installed in the same agent.
+
 ## Side paths
 
 - No codebase → `/rail-grill`

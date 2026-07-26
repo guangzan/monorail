@@ -34,7 +34,7 @@ If map mode's first breadth pass finds **no fog**, do not create a map — stay 
    - Confirm the feature slug (`docs/monorail/<slug>/`) — reuse an existing work directory for this effort if one already exists; do not invent a parallel slug; do not use reserved names (`CONTEXT.md`, `CONTEXT-MAP.md`, `adr`, `work-tracker.md`, `domain.md`)
    - Write `docs/monorail/<slug>/align.md` using the template below (create the directory if needed)
    - Domain docs alone are **not** enough — `/rail-spec` requires this file (or a cleared map)
-4. Suggest the human next step: `/rail-spec` for this same `<slug>` (do not invoke it)
+4. Suggest the human next step: **`/rail-spec`** for this same `<slug>` (do not invoke it). Do **not** suggest `/to-spec` or other foreign-pack equivalents.
 
 ### `align.md` template
 
