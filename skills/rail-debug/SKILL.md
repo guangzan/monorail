@@ -7,7 +7,7 @@ description: Diagnosis loop for hard bugs and performance regressions. Use when 
 
 A discipline for hard bugs. Skip phases only when explicitly justified.
 
-When exploring the codebase, read `CONTEXT.md` (if it exists) and check ADRs in the area you're touching.
+When exploring the codebase, read `docs/monorail/CONTEXT.md` (if it exists) and check ADRs under `docs/monorail/adr/` in the area you're touching.
 
 ## Phase 1 — Build a feedback loop
 

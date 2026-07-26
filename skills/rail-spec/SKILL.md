@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Turn **durable alignment** into a spec. Prefer synthesis over interview — but **never** invent a spec from thin air.
 
-If `docs/agents/work-tracker.md` is missing, tell the user to run `/rail-setup` and stop.
+If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup` and stop.
 
 ## Process
 
@@ -17,7 +17,7 @@ If `docs/agents/work-tracker.md` is missing, tell the user to run `/rail-setup` 
 Before reading or writing work files:
 
 - If the user named one, use it
-- Else list `docs/monorail/*/align.md`, `docs/monorail/*/map.md`, and `docs/monorail/*/spec.md`; reuse the matching effort's directory slug when unambiguous; if several, ask
+- Else list `docs/monorail/*/align.md`, `docs/monorail/*/map.md`, and `docs/monorail/*/spec.md` (skip reserved names: `adr`, `work-tracker.md`, `domain.md`, `CONTEXT.md`, `CONTEXT-MAP.md`); reuse the matching effort's directory slug when unambiguous; if several, ask
 - If `docs/monorail/<slug>/align.md` or `map.md` already exists for this effort, **do not** invent a different slug for the spec
 
 ### 2. Adequacy gate (fail closed)
@@ -30,7 +30,7 @@ Collect sources for this `<slug>`:
 | `docs/monorail/<slug>/map.md` with at least one resolved decision linked under Decisions so far (or map clear: no open tickets, Not yet specified empty / only out-of-scope) | Yes |
 | Substantial align discussion **in this same session** that has not yet been written to `align.md` | Yes — but write `align.md` first (same template as `/rail-align` light), then continue |
 | `docs/monorail/<slug>/pass-*.md` or a pass path the user passed | Enrichment only — **not** sufficient alone |
-| `CONTEXT.md` / ADRs alone | **No** |
+| `docs/monorail/CONTEXT.md` / ADRs alone | **No** |
 | Empty / unrelated conversation | **No** |
 
 If **no** adequate source: **stop**. Tell the user to run `/rail-align` for this slug (or keep grilling in this session, then persist `align.md`). Do **not** write `spec.md`.
@@ -45,7 +45,7 @@ If the map still has open decision tickets or non-empty fog under Not yet specif
 
 ### 4. Explore and seams
 
-Explore the codebase if needed. Use `CONTEXT.md` vocabulary; respect ADRs.
+Explore the codebase if needed. Use `docs/monorail/CONTEXT.md` vocabulary; respect ADRs under `docs/monorail/adr/`.
 
 Sketch test seams (prefer existing, highest seam, few seams). Confirm seams with the user before writing.
 

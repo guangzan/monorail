@@ -2,7 +2,7 @@
 
 English | [中文](README.zh-CN.md)
 
-Local-first Agent Skills for a clear engineering flow: **align → spec → slice → build**. Work artifacts live as markdown under `docs/monorail/` — no GitHub/GitLab Issues dependency.
+Local-first Agent Skills for a clear engineering flow: **align → spec → slice → build**. All rail docs (work artifacts, glossary, ADRs) live under `docs/monorail/` — no GitHub/GitLab Issues dependency.
 
 ## Install
 
@@ -30,7 +30,7 @@ In each business repo, run `/rail-setup` once before other rail engineering skil
 | Skill                                          | Role                                                |
 | ---------------------------------------------- | --------------------------------------------------- |
 | [`rail`](skills/rail/SKILL.md)                 | Router — which skill/flow fits                      |
-| [`rail-setup`](skills/rail-setup/SKILL.md)     | Configure local `docs/monorail/` + domain docs          |
+| [`rail-setup`](skills/rail-setup/SKILL.md)     | Configure all rail docs under `docs/monorail/`          |
 | [`rail-align`](skills/rail-align/SKILL.md)     | Align (light → `align.md`; or map mode)             |
 | [`rail-grill`](skills/rail-grill/SKILL.md)     | Stateless grilling (no codebase)                    |
 | [`rail-spec`](skills/rail-spec/SKILL.md)       | Write `spec.md` from `align.md` / cleared map       |

@@ -2,7 +2,7 @@
 
 [English](README.md) | 中文
 
-本地优先的 Agent Skills，对应清晰的工程流程：**对齐 → 规格 → 切片 → 构建**。工作产物以 markdown 存放在 `docs/monorail/` 下——不依赖 GitHub/GitLab Issues。
+本地优先的 Agent Skills，对应清晰的工程流程：**对齐 → 规格 → 切片 → 构建**。所有 rail 文档（工作产物、术语表、ADR）统一放在 `docs/monorail/` 下——不依赖 GitHub/GitLab Issues。
 
 ## 安装
 
@@ -30,7 +30,7 @@ npx skills add guangzan/monorail
 | Skill                                      | 作用                                             |
 | ------------------------------------------ | ------------------------------------------------ |
 | [`rail`](skills/rail/SKILL.md)             | 路由 — 选哪个 skill/流程                         |
-| [`rail-setup`](skills/rail-setup/SKILL.md) | 配置本地 `docs/monorail/` + 领域文档             |
+| [`rail-setup`](skills/rail-setup/SKILL.md) | 配置：所有 rail 文档统一在 `docs/monorail/`      |
 | [`rail-align`](skills/rail-align/SKILL.md) | 对齐需求（light → `align.md`；或 map 模式）      |
 | [`rail-grill`](skills/rail-grill/SKILL.md) | 无状态拷问（不依赖代码库）                       |
 | [`rail-spec`](skills/rail-spec/SKILL.md)   | 从 `align.md` / 已清完的 map 写 `spec.md`        |

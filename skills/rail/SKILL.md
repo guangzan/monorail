@@ -10,7 +10,7 @@ A **flow** is a path through skills. Most work follows the **main chain**.
 
 ## Main chain: idea → ship
 
-1. **`/rail-setup`** — once per repo (local `docs/monorail/` + domain docs)
+1. **`/rail-setup`** — once per repo (all rail docs under `docs/monorail/`)
 2. **`/rail-align`** — light grilling → writes `align.md`; map mode if foggy/multi-session
 3. **`/rail-spec`** — write `docs/monorail/<feature>/spec.md` from `align.md` and/or a cleared map (refuses empty context)
 4. **`/rail-slice`** — write `issues/NN-*.md` with blockers

@@ -7,7 +7,7 @@ description: Test-driven development with red-green-refactor. Use when building 
 
 TDD is the red → green loop. This skill is the reference that makes that loop produce tests worth keeping.
 
-When exploring the codebase, read `CONTEXT.md` (if it exists) so vocabulary matches the project's domain language, and respect ADRs in the area you're touching.
+When exploring the codebase, read `docs/monorail/CONTEXT.md` (if it exists) so vocabulary matches the project's domain language, and respect ADRs under `docs/monorail/adr/` in the area you're touching.
 
 ## What a good test is
 

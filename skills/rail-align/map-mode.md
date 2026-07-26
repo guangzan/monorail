@@ -39,7 +39,7 @@ Light mode does not create these typed tickets; escalate to map when a chain of 
 ## Charting session
 
 1. Confirm / ask for the effort slug (`docs/monorail/<effort>/`). Reuse an existing work directory for this effort if one already exists; later `/rail-spec` and `/rail-slice` **must** use this same slug
-2. Name Destination via grilling (and update `CONTEXT.md` / ADRs when terms crystallise)
+2. Name Destination via grilling (and update `docs/monorail/CONTEXT.md` / ADRs when terms crystallise)
 3. Breadth-first grill for open questions; assign each creatable ticket a `Type`
 4. If **no fog** — do not create a map; return to light mode
 5. Write `map.md` + creatable ticket files; wire `Blocked by` in a second pass
@@ -56,7 +56,7 @@ Light mode does not create these typed tickets; escalate to map when a chain of 
 
 ### Resolve: `decision`
 
-HITL. One-question grilling until the human answers. Write `## Answer`. Update `CONTEXT.md` / ADRs when terms crystallise.
+HITL. One-question grilling until the human answers. Write `## Answer`. Update `docs/monorail/CONTEXT.md` / ADRs when terms crystallise.
 
 ### Resolve: `research`
 

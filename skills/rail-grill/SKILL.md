@@ -14,7 +14,7 @@ Interview the user relentlessly about every aspect of the plan until shared unde
 - Prefer multiple-choice when options are clear
 - If a *fact* is findable in the environment, look it up — do not ask
 - Decisions belong to the user — put each one to them
-- Do **not** write `CONTEXT.md`, ADRs, or `docs/monorail/` files (no codebase / intentionally stateless)
+- Do **not** write any `docs/monorail/` files (including `CONTEXT.md` / ADRs) — no codebase / intentionally stateless
 - Do **not** implement code
 
 ## Completion

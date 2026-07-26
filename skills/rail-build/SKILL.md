@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Implement **one** implementation issue from `docs/monorail/<feature>/issues/`.
 
-If `docs/agents/work-tracker.md` is missing, tell the user to run `/rail-setup` and stop.
+If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup` and stop.
 
 ## Process
 
@@ -22,7 +22,7 @@ If `docs/agents/work-tracker.md` is missing, tell the user to run `/rail-setup` 
 8. Commit on the current branch only when the user's rules / request allow committing.
 9. Stop. Suggest the next **frontier** issue for a **fresh** session. If no open/unblocked issues remain, say the feature's implementation queue is clear (human decides merge/ship; a new feature starts at `/rail-align`).
 
-**Frontier (implementation):** `Status: open`, every listed blocker is `Status: done`, not claimed; lowest `NN` wins (see `docs/agents/work-tracker.md`).
+**Frontier (implementation):** `Status: open`, every listed blocker is `Status: done`, not claimed; lowest `NN` wins (see `docs/monorail/work-tracker.md`).
 
 Do not start a second issue in the same session.
 

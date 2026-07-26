@@ -11,7 +11,7 @@ Write a pass document so a fresh agent can continue. Save under the OS temp dire
 ## Include
 
 - Goal of the next session
-- Decisions already made (pointers to `CONTEXT.md`, ADRs, `docs/monorail/**` paths — do not duplicate)
+- Decisions already made (pointers under `docs/monorail/` — `CONTEXT.md`, ADRs, feature paths — do not duplicate)
 - If light align finished decisions but `align.md` is not written yet: say so explicitly and make writing `align.md` the next-session goal (do not suggest `/rail-spec` until it exists)
 - Open questions
 - Suggested skills (`/rail-align`, `/rail-build`, …)

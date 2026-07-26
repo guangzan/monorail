@@ -1,8 +1,22 @@
 # Work tracker: Local Markdown (rail)
 
-Specs, decision maps, and implementation issues for this repo live as markdown under `docs/monorail/`.
+All rail docs for this repo live under `docs/monorail/` — work artifacts, domain glossary/ADRs, and these convention files. Do not scatter to the repo root, `docs/agents/`, or `docs/adr/`.
 
-## Conventions
+## Layout
+
+```
+docs/monorail/
+  CONTEXT.md              # glossary (see domain.md)
+  CONTEXT-MAP.md          # multi-context only
+  adr/                    # ADRs
+  work-tracker.md         # this file
+  domain.md               # domain doc conventions
+  <feature-slug>/         # one effort per directory
+```
+
+**Reserved names** (not feature slugs): `CONTEXT.md`, `CONTEXT-MAP.md`, `adr`, `work-tracker.md`, `domain.md`.
+
+## Feature conventions
 
 - One feature/effort per directory: `docs/monorail/<feature-slug>/`
 - Light-align output: `docs/monorail/<feature-slug>/align.md` — required before `/rail-spec` when there is no cleared map
@@ -38,7 +52,7 @@ Read the file at the given path. The user normally passes the path or issue numb
 - `align.md` exists (from light `/rail-align`), or
 - `map.md` is clear (no open decision tickets; Not yet specified empty / only out-of-scope) with settled decisions folded from `decisions/`
 
-`CONTEXT.md` / ADRs alone are not enough. Handoff files enrich but do not replace align/map.
+`docs/monorail/CONTEXT.md` / ADRs alone are not enough. Handoff files enrich but do not replace align/map.
 
 ## Map-mode operations (`/rail-align` map mode)
 

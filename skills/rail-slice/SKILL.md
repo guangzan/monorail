@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Break an existing **spec** into **implementation** tickets — vertical tracer bullets with blocking edges. Local files only.
 
-If `docs/agents/work-tracker.md` is missing, tell the user to run `/rail-setup` and stop.
+If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup` and stop.
 
 ## Process
 
