@@ -6,18 +6,16 @@ disable-model-invocation: true
 
 # Rail Align
 
-Sharpen an idea before spec/build. Two modes — pick with an opening gate.
+Sharpen an idea before spec/build. Two modes — light by default when the ask is clear; ask about map only when fog warrants it.
 
 If `docs/monorail/work-tracker.md` or `docs/monorail/domain.md` is missing, tell the user to run `/rail-setup` first and stop.
 
 ## Opening gate
 
-After the user states the idea, ask one question:
+After the user states the idea, **classify silently** — do **not** open with a Light vs Map choice.
 
-> Is this small enough to settle in **this** conversation, or is it foggy / multi-session?
-
-- **This conversation** → **Light mode**
-- **Foggy / multi-session** → **Map mode** (read [`map-mode.md`](map-mode.md))
+- **Clear and small enough for this conversation** → enter **Light mode** immediately and start grilling
+- **Foggy / complex / multi-session** → ask whether to enter **Map mode** (read [`map-mode.md`](map-mode.md)); if they decline, stay in light
 - If unsure: start light; escalate to map only when fog appears mid-session and the user agrees
 
 If map mode's first breadth pass finds **no fog**, do not create a map — stay in light mode.
