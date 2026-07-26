@@ -1,6 +1,6 @@
 ---
 name: rail-align
-description: Align on a plan or design — light grilling with domain docs by default; map mode for foggy multi-session efforts. Light mode always writes docs/monorail/<slug>/align.md before handing off to spec.
+description: Align on a plan or design — light grilling with domain docs by default; map mode for foggy multi-session efforts. Light mode writes docs/monorail/<slug>/align.md then auto-continues the planning chain (spec → slice).
 disable-model-invocation: true
 ---
 
@@ -30,11 +30,12 @@ If map mode's first breadth pass finds **no fog**, do not create a map — stay 
    - Sharpen fuzzy language; propose canonical terms
    - When a hard-to-reverse decision crystallises, write an ADR under `docs/monorail/adr/`
    - Create `docs/monorail/CONTEXT.md` / `docs/monorail/adr/` lazily when first needed
-3. When the decision tree is resolved and the user confirms shared understanding, **persist before stopping**:
+3. When the decision tree is resolved and the user confirms shared understanding, **persist before continuing**:
    - Confirm the feature slug (`docs/monorail/<slug>/`) — reuse an existing work directory for this effort if one already exists; do not invent a parallel slug; do not use reserved names (`CONTEXT.md`, `CONTEXT-MAP.md`, `adr`, `work-tracker.md`, `domain.md`)
    - Write `docs/monorail/<slug>/align.md` using the template below (create the directory if needed)
    - Domain docs alone are **not** enough — `/rail-spec` requires this file (or a cleared map)
-4. Suggest the human next step: **`/rail-spec`** for this same `<slug>` (do not invoke it). Do **not** suggest `/to-spec` or other foreign-pack equivalents.
+4. **Continue the planning chain** for this same `<slug>`: read and follow `/rail-spec` in this same session (then that skill continues to `/rail-slice`). Do **not** stop and ask the user to type `/rail-spec`. Do **not** substitute `/to-spec` or other foreign-pack equivalents.
+   - **Exceptions (stop instead):** user asked to stop after align; context near limits → `/rail-pass`
 
 ### `align.md` template
 
@@ -56,8 +57,8 @@ Map mode does **not** require `align.md` — `map.md` + resolved `decisions/` ar
 
 ## Completion
 
-- Light: user confirms alignment; `align.md` written; domain docs updated as needed
-- Map charting: `map.md` + initial `decisions/` written (each with a `Type`); no tickets resolved in the charting session
-- Map work-through: exactly one ticket resolved (any `Type`); map index updated; research tickets also write `notes/`
+- Light: user confirms alignment; `align.md` written; domain docs updated as needed; then auto-continue into `/rail-spec` (unless an exception above applies)
+- Map charting: `map.md` + initial `decisions/` written (each with a `Type`); no tickets resolved in the charting session — **stop** (do not auto-continue; next session works tickets)
+- Map work-through: exactly one ticket resolved (any `Type`); map index updated; research tickets also write `notes/` — **stop** unless the map is now clear, in which case auto-continue into `/rail-spec` (see `map-mode.md`)
 
 Near context limits: stop and suggest `/rail-pass` instead of continuing degraded.

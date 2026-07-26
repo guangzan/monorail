@@ -77,6 +77,8 @@ If the real blocker is a fact gap: retarget/split as `research`; do not use code
 
 ## Clear map → spec
 
-When no open tickets remain and Not yet specified is empty (or only out-of-scope remains), tell the user the map is clear and they should run `/rail-spec` **for this same `<effort>` slug**. Spec may cite `notes/` and prototype verdicts; those artifacts do **not** auto-become `issues/`.
+When no open tickets remain and Not yet specified is empty (or only out-of-scope remains), the map is clear. **Continue the planning chain** for this same `<effort>` slug: read and follow `/rail-spec` in this same session (it will continue to `/rail-slice`). Do **not** stop and ask the user to type `/rail-spec`. Spec may cite `notes/` and prototype verdicts; those artifacts do **not** auto-become `issues/`.
+
+**Exceptions (stop instead):** user asked to stop after the map; context near limits → `/rail-pass`.
 
 Do **not** require `align.md` after a cleared map — `map.md` + resolved `decisions/` satisfy `/rail-spec`'s adequacy gate. If both `align.md` and a map exist for the same slug, `/rail-spec` folds both (map answers win on conflict unless the user says otherwise).

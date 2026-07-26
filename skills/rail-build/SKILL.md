@@ -30,4 +30,4 @@ Do not start a second issue in the same session.
 
 - Hard bug / unclear failure → suggest `/rail-debug` (prefer a fresh session if context is already heavy)
 - Context full / near degraded → `/rail-pass`; do not push on
-- Spec/issue wrong or incomplete (missing requirement, bad slice) → **stop**; do not keep coding. Suggest `/rail-align` (update `align.md` or map) then `/rail-spec` / `/rail-slice` as needed — leave the issue `Status: claimed` or revert to `open` with a `## Comments` note; do not mark `done`
+- Spec/issue wrong or incomplete (missing requirement, bad slice) → **stop**; do not keep coding. Suggest `/rail-align` (update `align.md` or map); when alignment is durable again the **planning chain** auto-continues (`/rail-spec` → `/rail-slice`). Leave the issue `Status: claimed` or revert to `open` with a `## Comments` note; do not mark `done`

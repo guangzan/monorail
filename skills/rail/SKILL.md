@@ -16,11 +16,23 @@ A **flow** is a path through skills. Most work follows the **main chain**.
 4. **`/rail-slice`** — write `issues/NN-*.md` with blockers
 5. **`/rail-build`** — one issue per session; drives `/rail-tdd`, closes with `/rail-review`
 
-Prefer keeping align → spec → slice in one window. If the window breaks, durable `align.md` / map still feed `/rail-spec`. Clear context between each `/rail-build`.
+### Planning chain (auto-continue)
+
+**align → spec → slice** is one planning chain. When a stage finishes successfully in this session, **continue the next stage in the same session** by reading and following that skill's `SKILL.md` — do **not** stop and ask the user to type the next `/rail-*`.
+
+- Light align writes `align.md` → continue `/rail-spec` → continue `/rail-slice`
+- Cleared map (no open tickets / fog) → continue `/rail-spec` → continue `/rail-slice`
+- Standalone `/rail-spec` auto-continues to `/rail-slice`; `/rail-slice` ends the planning chain (suggest `/rail-build` only)
+
+**Do not auto-continue into `/rail-build`.** After slice (or when build finishes an issue), suggest `/rail-build` for a **fresh** session. Clear context between each `/rail-build`.
+
+**Stop auto-continue when:** the user asked to stop after this stage; context is near limits (use `/rail-pass`); or an adequacy / map / fail-closed gate says stop.
+
+If the window breaks mid-chain, durable `align.md` / map / `spec.md` still feed the next skill when the user resumes.
 
 ## In-pack handoffs only
 
-When a rail skill finishes, suggest the **next rail skill by exact name** (`/rail-align`, `/rail-spec`, `/rail-slice`, `/rail-build`, …). Do **not** substitute lookalike skills from other packs (e.g. `/to-spec` for `/rail-spec`, `/to-tickets` / `/to-issues` for `/rail-slice`) even if those are installed in the same agent.
+Handoffs (auto-continue or suggest) use the **next rail skill by exact name** (`/rail-align`, `/rail-spec`, `/rail-slice`, `/rail-build`, …). Do **not** substitute lookalike skills from other packs (e.g. `/to-spec` for `/rail-spec`, `/to-tickets` / `/to-issues` for `/rail-slice`) even if those are installed in the same agent.
 
 ## Side paths
 

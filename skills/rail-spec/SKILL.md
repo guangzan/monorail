@@ -1,6 +1,6 @@
 ---
 name: rail-spec
-description: Synthesize durable align/map sources (and current conversation) into docs/monorail/<feature>/spec.md. Refuse empty context — do not invent a thin spec.
+description: Synthesize durable align/map sources (and current conversation) into docs/monorail/<feature>/spec.md, then auto-continue to rail-slice. Refuse empty context — do not invent a thin spec.
 disable-model-invocation: true
 ---
 
@@ -53,13 +53,13 @@ Sketch test seams (prefer existing, highest seam, few seams). Confirm seams with
 
 If durable sources exist but a **few** gaps block a coherent spec, ask only those questions — one at a time. If gaps are large or re-open the decision tree, stop and suggest `/rail-align` instead of pushing a hollow spec.
 
-### 6. Write and stop
+### 6. Write and continue
 
 Write `docs/monorail/<feature-slug>/spec.md` using the template below.
 
-Stop. Tell the user the **only** next human step on the main chain is **`/rail-slice`** (writes `docs/monorail/<slug>/issues/NN-*.md`). Do **not** suggest foreign-pack skills with similar jobs — e.g. `/to-tickets`, `/to-issues`, `/to-prd`, `/to-spec` — even if those skills are installed. Do **not** open GitHub/GitLab Issues for rail work.
+**Continue the planning chain** for this same `<slug>`: read and follow `/rail-slice` in this same session (writes `docs/monorail/<slug>/issues/NN-*.md`). Do **not** stop and ask the user to type `/rail-slice`. Do **not** substitute foreign-pack skills — e.g. `/to-tickets`, `/to-issues`, `/to-prd`, `/to-spec` — even if those are installed. Do **not** open GitHub/GitLab Issues for rail work. Do **not** auto-continue into `/rail-build`.
 
-Near context limits: stop and suggest `/rail-pass` instead of writing a degraded spec.
+**Exceptions (stop instead):** user asked to stop after spec; context near limits → `/rail-pass` (do not write a degraded spec, and do not continue to slice).
 
 ## Spec template
 

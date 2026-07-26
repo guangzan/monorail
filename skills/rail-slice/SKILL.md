@@ -1,6 +1,6 @@
 ---
 name: rail-slice
-description: Break an existing docs/monorail/<feature>/spec.md into tracer-bullet issues under issues/, each with Blocked by edges.
+description: Break an existing docs/monorail/<feature>/spec.md into tracer-bullet issues under issues/, each with Blocked by edges. Ends the planning chain — next step is rail-build in a fresh session.
 disable-model-invocation: true
 ---
 
@@ -56,6 +56,6 @@ Each issue file must include:
 
 ### Completion
 
-Files written; tell the user to work the frontier with **`/rail-build`** (one issue per session, clear context between). Do **not** suggest `/implement`, `/triage`, or other foreign-pack equivalents.
+Files written. **Stop here** — the planning chain ends at slice. Tell the user the next step is **`/rail-build`** on the frontier issue in a **fresh** session (one issue per session, clear context between). Do **not** auto-continue into `/rail-build`. Do **not** suggest `/implement`, `/triage`, or other foreign-pack equivalents.
 
 Near context limits: stop and suggest `/rail-pass` instead of publishing a degraded slice set.
