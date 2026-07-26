@@ -36,9 +36,13 @@ Rules:
 
 Give each ticket blocking edges.
 
-### 4. Quiz the user
+### 4. Ask only on real trade-offs
 
-Present numbered list: Title, Blocked by, What it delivers. Ask granularity / edges / merge-split. Iterate until approved.
+Humans adjudicate **trade-offs**, not obviously correct slices.
+
+- **No fork → publish.** If the draft has no meaningful alternative you would actually recommend (typical: one narrow ticket, `Blocked by: None`; or a clear linear chain with obvious order), **do not** quiz. Do **not** invent A/B/C options or ask "approve this list?". Go to Publish.
+- **Real fork → ask only that fork.** Quiz when merge vs split, blocker order, or "is this prefactor its own ticket?" has real session-fit / risk trade-offs. Present the contested choice (and your recommendation); iterate until resolved. Do not pad with ceremonial whole-list approval.
+- **User hold → wait.** If the user asked to review the draft first or not write yet, present Title / Blocked by / What it delivers and wait — do not publish.
 
 ### 5. Publish
 
@@ -56,6 +60,6 @@ Each issue file must include:
 
 ### Completion
 
-Files written. **Stop here** — the planning chain ends at slice. Tell the user the next step is **`/rail-build`** on the frontier issue in a **fresh** session (one issue per session, clear context between). Do **not** auto-continue into `/rail-build`. Do **not** suggest `/implement`, `/triage`, or other foreign-pack equivalents.
+Files written. In the completion message, list what was published (titles + blockers) so the user can still object next turn. **Stop here** — the planning chain ends at slice. Tell the user the next step is **`/rail-build`** on the frontier issue in a **fresh** session (one issue per session, clear context between). Do **not** auto-continue into `/rail-build`. Do **not** suggest `/implement`, `/triage`, or other foreign-pack equivalents.
 
 Near context limits: stop and suggest `/rail-pass` instead of publishing a degraded slice set.
