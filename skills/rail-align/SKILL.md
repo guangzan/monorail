@@ -31,8 +31,9 @@ If map mode's first breadth pass finds **no fog**, do not create a map — stay 
    - When a hard-to-reverse decision crystallises, write an ADR under `docs/monorail/adr/`
    - Create `docs/monorail/CONTEXT.md` / `docs/monorail/adr/` lazily when first needed
 3. When the decision tree is resolved and the user confirms shared understanding, **persist before continuing**:
-   - Confirm the feature slug (`docs/monorail/<slug>/`) — reuse an existing work directory for this effort if one already exists; do not invent a parallel slug; do not use reserved names (`CONTEXT.md`, `CONTEXT-MAP.md`, `adr`, `work-tracker.md`, `domain.md`)
-   - Write `docs/monorail/<slug>/align.md` using the template below (create the directory if needed)
+   - **Pick a new feature slug** (`docs/monorail/<slug>/`) — agent chooses; **never ask** the user; **never reuse** an existing `docs/monorail/<slug>/` work directory (related prior efforts stay separate; link them from Domain pointers if useful). If the user already named a free slug, use it; if that path exists or the name is reserved, invent a distinct unused kebab-case slug (suffix if needed). Reserved names: `CONTEXT.md`, `CONTEXT-MAP.md`, `adr`, `work-tracker.md`, `domain.md`
+   - **Do not** interview for slug (no A/B/C, no “new vs continue”) — slug is path bookkeeping, not a decision-tree branch
+   - Write `docs/monorail/<slug>/align.md` using the template below (create the directory)
    - Domain docs alone are **not** enough — `/rail-spec` requires this file (or a cleared map)
 4. **Continue the planning chain** for this same `<slug>`: read and follow `/rail-spec` in this same session (then that skill continues to `/rail-slice`). Do **not** stop and ask the user to type `/rail-spec`. Do **not** substitute `/to-spec` or other foreign-pack equivalents.
    - **Exceptions (stop instead):** user asked to stop after align; context near limits → `/rail-pass`
@@ -51,7 +52,7 @@ Do **not** treat conversation memory as the pass. If context is near limits befo
 
 ## Map mode
 
-Follow [`map-mode.md`](map-mode.md). Confirm the effort slug before writing any `docs/monorail/` files. Still update `docs/monorail/CONTEXT.md` / ADRs when terms crystallise. Produce **decisions**, not implementation deliverables.
+Follow [`map-mode.md`](map-mode.md). Charting opens a **new** effort slug (same rules as light persist — never ask, never reuse); work-through stays on the map's existing slug. Still update `docs/monorail/CONTEXT.md` / ADRs when terms crystallise. Produce **decisions**, not implementation deliverables.
 
 Map mode does **not** require `align.md` — `map.md` + resolved `decisions/` are the durable source for `/rail-spec`.
 

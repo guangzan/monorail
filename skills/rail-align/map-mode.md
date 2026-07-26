@@ -38,7 +38,7 @@ Light mode does not create these typed tickets; escalate to map when a chain of 
 
 ## Charting session
 
-1. Confirm / ask for the effort slug (`docs/monorail/<effort>/`). Reuse an existing work directory for this effort if one already exists; later `/rail-spec` and `/rail-slice` **must** use this same slug
+1. **Open a new effort slug** (`docs/monorail/<effort>/`) — agent chooses; **never ask**; **never reuse** an existing work directory (same rules as light-mode persist). Later `/rail-spec` and `/rail-slice` **must** use this same slug
 2. Name Destination via grilling (and update `docs/monorail/CONTEXT.md` / ADRs when terms crystallise)
 3. Breadth-first grill for open questions; assign each creatable ticket a `Type`
 4. If **no fog** — do not create a map; return to light mode

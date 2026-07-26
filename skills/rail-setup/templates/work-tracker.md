@@ -26,7 +26,8 @@ docs/monorail/
 - Decision tickets (map mode): `docs/monorail/<feature-slug>/decisions/<NN>-<slug>.md`
 - Research notes (map mode): `docs/monorail/<feature-slug>/notes/<NN>-<slug>.md` — required when a `Type: research` ticket is resolved
 - Map: `docs/monorail/<feature-slug>/map.md`
-- Keep align, map, spec, and issues under the **same** `<feature-slug>` for one effort — do not fork parallel directories
+- Keep align, map, spec, and issues under the **same** `<feature-slug>` for one effort (planning chain stays in that directory)
+- **New** `/rail-align` (light persist or map charting) always opens a **new** `<feature-slug>/` — never ask the user for the slug; never write into another effort's directory (link prior aligns from Domain pointers if needed). Map **work-through** stays on the existing map's slug
 - Triage/status is a `Status:` line near the top of each ticket file
 - Implementation issue status: `open` | `claimed` | `done`
 - Decision ticket status: `open` | `claimed` | `resolved`
