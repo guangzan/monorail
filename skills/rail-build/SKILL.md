@@ -1,6 +1,6 @@
 ---
 name: rail-build
-description: Implement one docs/monorail issue — drive rail-tdd at agreed seams, then rail-review, then commit.
+description: Implement one docs/monorail issue — drive rail-tdd at agreed seams, then commit.
 disable-model-invocation: true
 ---
 
@@ -18,10 +18,9 @@ If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup
 4. **Parallel scout** (read-only) — before writing any test or production code, map the territory with concurrent sub-agents (see below). Synthesize their reports, then confirm seams with the user if not already agreed in the spec's Testing Decisions.
 5. Drive `/rail-tdd` at the agreed seams. Do **not** start TDD until scout has returned (or the sequential fallback finished).
 6. Run typecheck / relevant tests regularly; full suite once at the end.
-7. Run `/rail-review` against the branch fixed point (ask user if unclear).
-8. **Done gate:** set issue `Status: done` only when both review axes have no blocking findings, **or** the user explicitly accepts the residual risk. Otherwise fix findings (or stop) — do not mark done.
-9. Commit on the current branch only when the user's rules / request allow committing.
-10. Stop. Suggest the next **frontier** issue for a **fresh** session. If no open/unblocked issues remain, say the feature's implementation queue is clear (human decides merge/ship; a new feature starts at `/rail-align`).
+7. Set issue `Status: done` when the issue's behaviour is covered (TDD complete at the agreed seams) and typecheck / relevant tests are green. Do **not** run `/rail-review` as part of build — review is opt-in via a separate session when the user wants it.
+8. Commit on the current branch only when the user's rules / request allow committing.
+9. Stop. Suggest the next **frontier** issue for a **fresh** session. If no open/unblocked issues remain, say the feature's implementation queue is clear (human decides merge/ship; a new feature starts at `/rail-align`).
 
 **Frontier (implementation):** `Status: open`, every listed blocker is `Status: done`, not claimed; lowest `NN` wins (see `docs/monorail/work-tracker.md`).
 

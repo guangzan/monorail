@@ -43,7 +43,7 @@ In each business repo, run `/rail-setup` once before other rail engineering skil
 | Skill                                            | Role                    |
 | ------------------------------------------------ | ----------------------- |
 | [`rail-tdd`](skills/rail-tdd/SKILL.md)           | Red-green-refactor      |
-| [`rail-review`](skills/rail-review/SKILL.md)     | Standards + Spec review |
+| [`rail-review`](skills/rail-review/SKILL.md)     | Standards + Spec review (opt-in; not part of build) |
 | [`rail-debug`](skills/rail-debug/SKILL.md)       | Hard-bug diagnosis loop |
 
 ## Acknowledgments

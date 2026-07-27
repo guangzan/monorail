@@ -14,7 +14,7 @@ A **flow** is a path through skills. Most work follows the **main chain**.
 2. **`/rail-align`** — light grilling → writes `align.md`; map mode if foggy/multi-session
 3. **`/rail-spec`** — write `docs/monorail/<feature>/spec.md` from `align.md` and/or a cleared map (refuses empty context)
 4. **`/rail-slice`** — write `issues/NN-*.md` with blockers
-5. **`/rail-build`** — one issue per session; drives `/rail-tdd`, closes with `/rail-review`
+5. **`/rail-build`** — one issue per session; drives `/rail-tdd`, then marks done
 
 ### Planning chain (auto-continue)
 
@@ -43,7 +43,7 @@ Handoffs (auto-continue or suggest) use the **next rail skill by exact name** (`
 ## Vocabulary underneath
 
 - `/rail-tdd` — red-green-refactor (also used inside build)
-- `/rail-review` — Standards + Spec review (also used inside build)
+- `/rail-review` — Standards + Spec review (opt-in; not part of build)
 
 ## Map ticket types (not separate skills)
 

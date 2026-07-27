@@ -1,6 +1,6 @@
 ---
 name: rail-review
-description: Two-axis review of the diff since a fixed point — Standards and Spec. Use when reviewing a branch, WIP changes, or when rail-build closes out work.
+description: Two-axis review of the diff since a fixed point — Standards and Spec. Use when reviewing a branch, PR, or WIP changes — not as part of rail-build.
 ---
 
 # Rail Review
@@ -62,7 +62,7 @@ If the spec is missing, skip the Spec sub-agent and note that in the final repor
 
 ### 5. Aggregate
 
-Present under `## Standards` and `## Spec` separately. Do not merge or rerank across axes. End with one-line counts per axis, and label any **blocking** findings clearly (so `/rail-build` can enforce its done gate).
+Present under `## Standards` and `## Spec` separately. Do not merge or rerank across axes. End with one-line counts per axis, and label any **blocking** findings clearly.
 
 **Blocking vs non-blocking:**
 
@@ -70,4 +70,4 @@ Present under `## Standards` and `## Spec` separately. Do not merge or rerank ac
 - **Blocking (Standards):** hard violation of a **documented** repo standard (cite file + rule)
 - **Non-blocking:** Fowler smell-baseline heuristics; style nits tooling already covers; speculative scope the issue did not ask for (still report under Spec as scope creep, but not blocking unless it contradicts the issue)
 
-Do not commit or push as part of review. Do not set issue `Status: done` — that is `/rail-build`'s job after the done gate.
+Do not commit or push as part of review. Do not set issue `Status: done`.

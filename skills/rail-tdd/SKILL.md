@@ -33,8 +33,8 @@ Ask: "What's the public interface, and which seams should we test?"
 
 - **Red before green.** Write the failing test first, then only enough code to pass it.
 - **One slice at a time.** One seam, one test, one minimal implementation per cycle.
-- **Refactoring is not part of the loop.** It belongs to review (`/rail-review`), not the red → green cycle.
+- **Refactor after green.** When the suite is green, look for [refactor candidates](refactoring.md). Never refactor while red. Re-run tests after each refactor step.
 
 ## Completion
 
-A behaviour is done when its failing test went red, then green, and the agreed seam still holds.
+A behaviour is done when its failing test went red, then green, any needed refactor kept the suite green, and the agreed seam still holds.

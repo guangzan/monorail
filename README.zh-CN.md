@@ -43,7 +43,7 @@ npx skills add guangzan/monorail
 | Skill                                        | 作用                  |
 | -------------------------------------------- | --------------------- |
 | [`rail-tdd`](skills/rail-tdd/SKILL.md)       | Red-green-refactor    |
-| [`rail-review`](skills/rail-review/SKILL.md) | Standards + Spec 审查 |
+| [`rail-review`](skills/rail-review/SKILL.md) | Standards + Spec 审查（按需；不在 build 内） |
 | [`rail-debug`](skills/rail-debug/SKILL.md)   | 疑难 bug 诊断循环     |
 
 ## 致谢
