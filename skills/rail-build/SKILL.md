@@ -24,7 +24,33 @@ If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup
 
 **Frontier (implementation):** `Status: open`, every listed blocker is `Status: done`, not claimed; lowest `NN` wins (see `docs/monorail/work-tracker.md`).
 
-Do not start a second issue in the same session.
+Do not start a second issue in the same session or the same working tree.
+
+## Parallel builds (worktree-mandatory)
+
+Default remains one issue in the current worktree. To run **more than one** `/rail-build` at once, isolation is a **git worktree**, not "more sessions".
+
+**Hard rule:** never two build writers on the same working tree — whether two Cursor sessions, two sub-agents, or any mix. Same-cwd concurrent builds are forbidden; stop and set up worktrees instead.
+
+### Setup (primary worktree only, serially)
+
+1. Pick N frontier issues (`Status: open`, blockers `done`).
+2. Claim each (`Status: claimed`) on the **primary** worktree.
+3. Commit those claim edits on the integration branch so Status is durable before fork (follow the user's commit rules).
+4. For each claimed issue, add a dedicated worktree + branch from that commit, e.g.:
+   - branch: `rail/build/<feature>-<NN>`
+   - path: repo-sibling or `.worktrees/<feature>-<NN>` (create `.worktrees/` if needed; do not commit build artifacts from it)
+   - `git worktree add <path> -b rail/build/<feature>-<NN> <integration-ref>`
+5. Start **one** `/rail-build` per worktree (fresh session; **cwd = that worktree**). The issue is already claimed — verify `claimed`, do not claim a different issue.
+
+### During / after
+
+- Each build writes only inside its own worktree. Do not edit other worktrees' files.
+- Mark `Status: done` and commit on that issue's branch when the solo done gate passes.
+- **Integrate serially** into the integration branch (merge or rebase **one branch at a time**). Resolve conflicts on the integration branch. Do not parallel-merge.
+- Remove worktrees after their branches are integrated.
+
+Parallel builds do **not** mean dispatching implementation sub-agents on one tree. Use separate worktrees (and usually separate sessions); keep scout's same-tree implementation ban.
 
 ## Parallel scout
 
@@ -44,7 +70,7 @@ Each scout prompt must include: absolute paths to the issue file and `spec.md`, 
 
 After all scouts return: synthesize into a short seam proposal for the user (or reuse seams already settled in the spec). Then continue at step 5.
 
-**Do not** dispatch implementation or fix sub-agents in parallel on the same working tree during build — that is out of scope for scout.
+**Do not** dispatch implementation or fix sub-agents in parallel on the same working tree during build — that is out of scope for scout. For multi-issue throughput, use **Parallel builds** (worktrees) above.
 
 ## Escape hatches (mid-build)
 

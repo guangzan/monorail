@@ -21,7 +21,7 @@ npx skills add guangzan/monorail
               └─ map ──→ decisions* ═╩══→ /rail-spec ══→ /rail-slice ──→ /rail-build*
 ```
 
-`══→` 表示同会话自动续跑（规划链）。`*` / `──→` 可能需要新会话。每次 `/rail-build` 只处理一张未被阻塞的 issue。没有 `align.md` 或未清完 map 时，`/rail-spec` 会拒绝写入。
+`══→` 表示同会话自动续跑（规划链）。`*` / `──→` 可能需要新会话。每次 `/rail-build` 只处理一张未被阻塞的 issue。并发多张时必须 **一 issue 一 git worktree**（禁止同一 cwd 并行）。没有 `align.md` 或未清完 map 时，`/rail-spec` 会拒绝写入。
 
 ## Skills
 
@@ -35,7 +35,7 @@ npx skills add guangzan/monorail
 | [`rail-grill`](skills/rail-grill/SKILL.md) | 无状态拷问（不依赖代码库）                       |
 | [`rail-spec`](skills/rail-spec/SKILL.md)   | 从 `align.md` / 已清完的 map 写 `spec.md`        |
 | [`rail-slice`](skills/rail-slice/SKILL.md) | 将 `spec.md` 拆成带 blockers 的 `issues/NN-*.md` |
-| [`rail-build`](skills/rail-build/SKILL.md) | 实现 issue                                       |
+| [`rail-build`](skills/rail-build/SKILL.md) | 实现 issue（并发须 worktree）                    |
 | [`rail-pass`](skills/rail-pass/SKILL.md)   | 跨会话接力文档（`pass-*.md`）                    |
 
 ### 模型调用

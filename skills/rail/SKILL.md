@@ -14,7 +14,7 @@ A **flow** is a path through skills. Most work follows the **main chain**.
 2. **`/rail-align`** — light grilling → writes `align.md`; map mode if foggy/multi-session
 3. **`/rail-spec`** — write `docs/monorail/<feature>/spec.md` from `align.md` and/or a cleared map (refuses empty context)
 4. **`/rail-slice`** — write `issues/NN-*.md` with blockers
-5. **`/rail-build`** — one issue per session; drives `/rail-tdd`, then marks done
+5. **`/rail-build`** — one issue per session / worktree; drives `/rail-tdd`, then marks done. Concurrent builds require **separate git worktrees** (see `rail-build`)
 
 ### Planning chain (auto-continue)
 
@@ -24,7 +24,7 @@ A **flow** is a path through skills. Most work follows the **main chain**.
 - Cleared map (no open tickets / fog) → continue `/rail-spec` → continue `/rail-slice`
 - Standalone `/rail-spec` auto-continues to `/rail-slice`; `/rail-slice` ends the planning chain (suggest `/rail-build` only)
 
-**Do not auto-continue into `/rail-build`.** After slice (or when build finishes an issue), suggest `/rail-build` for a **fresh** session. Clear context between each `/rail-build`.
+**Do not auto-continue into `/rail-build`.** After slice (or when build finishes an issue), suggest `/rail-build` for a **fresh** session. Clear context between each `/rail-build`. To run several builds at once, set up **one git worktree per issue** first — more sessions on the same cwd are not parallel-safe.
 
 **Stop auto-continue when:** the user asked to stop after this stage; context is near limits (use `/rail-pass`); or an adequacy / map / fail-closed gate says stop.
 

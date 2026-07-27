@@ -45,6 +45,7 @@ Read the file at the given path. The user normally passes the path or issue numb
 
 - **Implementation issues:** `Status: open`, every `Blocked by` target is `Status: done`, not yet `claimed`; lowest `NN` wins
 - **Decision tickets (map mode):** `Status: open` (or unclaimed), every blocker is `Status: resolved`; lowest `NN` wins
+- **Parallel `/rail-build`:** only on distinct frontier issues; **one git worktree per issue** (claim on the primary worktree first). Same working tree must not run two builds at once — see `/rail-build` Parallel builds
 
 ## Adequacy for `/rail-spec`
 
