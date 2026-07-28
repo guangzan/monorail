@@ -17,8 +17,8 @@ In each business repo, run `/rail-setup` once before other rail engineering skil
 ## Main chain
 
 ```text
-/rail-align ── light ──→ align.md ══╗
-              └─ map ──→ decisions* ═╩══→ /rail-spec ══→ /rail-slice ──→ /rail-build*
+/rail-align ─┬─ light ──→ align.md  ══╗
+             └─ map   ──→ decisions* ═╩══→ /rail-spec ══→ /rail-slice ──→ /rail-build*
 ```
 
 `══→` auto-continues in the same session (planning chain). `*` / `──→` may need a fresh session. Each `/rail-build` takes one unblocked issue. Concurrent builds require **one git worktree per issue** (same cwd is forbidden). `/rail-spec` refuses to write without `align.md` or a cleared map.

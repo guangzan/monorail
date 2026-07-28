@@ -17,8 +17,8 @@ npx skills add guangzan/monorail
 ## 主链路
 
 ```text
-/rail-align ── light ──→ align.md ══╗
-              └─ map ──→ decisions* ═╩══→ /rail-spec ══→ /rail-slice ──→ /rail-build*
+/rail-align ─┬─ light ──→ align.md  ══╗
+             └─ map   ──→ decisions* ═╩══→ /rail-spec ══→ /rail-slice ──→ /rail-build*
 ```
 
 `══→` 表示同会话自动续跑（规划链）。`*` / `──→` 可能需要新会话。每次 `/rail-build` 只处理一张未被阻塞的 issue。并发多张时必须 **一 issue 一 git worktree**（禁止同一 cwd 并行）。没有 `align.md` 或未清完 map 时，`/rail-spec` 会拒绝写入。
