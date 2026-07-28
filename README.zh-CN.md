@@ -25,26 +25,31 @@ npx skills add guangzan/monorail
 
 ## Skills
 
-### 用户调用
+### 主链路
 
 | Skill                                      | 作用                                             |
 | ------------------------------------------ | ------------------------------------------------ |
-| [`rail`](skills/rail/SKILL.md)             | 路由 — 选哪个 skill/流程                         |
 | [`rail-setup`](skills/rail-setup/SKILL.md) | 配置：所有 rail 文档统一在 `docs/monorail/`      |
 | [`rail-align`](skills/rail-align/SKILL.md) | 对齐需求（light → `align.md`；或 map 模式）      |
-| [`rail-grill`](skills/rail-grill/SKILL.md) | 无状态拷问（不依赖代码库）                       |
 | [`rail-spec`](skills/rail-spec/SKILL.md)   | 从 `align.md` / 已清完的 map 写 `spec.md`        |
 | [`rail-slice`](skills/rail-slice/SKILL.md) | 将 `spec.md` 拆成带 blockers 的 `issues/NN-*.md` |
 | [`rail-build`](skills/rail-build/SKILL.md) | 实现 issue（并发须 worktree）                    |
-| [`rail-pass`](skills/rail-pass/SKILL.md)   | 跨会话接力文档（`pass-*.md`）                    |
 
-### 模型调用
+### 旁路与辅助
 
-| Skill                                        | 作用                  |
-| -------------------------------------------- | --------------------- |
-| [`rail-tdd`](skills/rail-tdd/SKILL.md)       | Red-green-refactor    |
+| Skill                                        | 作用                                         |
+| -------------------------------------------- | -------------------------------------------- |
+| [`rail`](skills/rail/SKILL.md)               | 路由 — 选哪个 skill/流程                     |
+| [`rail-grill`](skills/rail-grill/SKILL.md)   | 无状态拷问                                   |
+| [`rail-pass`](skills/rail-pass/SKILL.md)     | 跨会话接力文档（`pass-*.md`）                |
+| [`rail-debug`](skills/rail-debug/SKILL.md)   | 疑难 bug 诊断循环                            |
 | [`rail-review`](skills/rail-review/SKILL.md) | Standards + Spec 审查（按需；不在 build 内） |
-| [`rail-debug`](skills/rail-debug/SKILL.md)   | 疑难 bug 诊断循环     |
+
+### 底层能力
+
+| Skill                                  | 作用                                   |
+| -------------------------------------- | -------------------------------------- |
+| [`rail-tdd`](skills/rail-tdd/SKILL.md) | Red-green-refactor（build 内也会用到） |
 
 ## 致谢
 

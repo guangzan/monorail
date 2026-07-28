@@ -39,11 +39,11 @@ Handoffs (auto-continue or suggest) use the **next rail skill by exact name** (`
 - No codebase → `/rail-grill`
 - Context full / branch session → `/rail-pass`
 - Hard bug → `/rail-debug`
+- Review a branch / PR / WIP → `/rail-review` (opt-in; not part of build)
 
 ## Vocabulary underneath
 
 - `/rail-tdd` — red-green-refactor (also used inside build)
-- `/rail-review` — Standards + Spec review (opt-in; not part of build)
 
 ## Map ticket types (not separate skills)
 

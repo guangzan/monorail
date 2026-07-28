@@ -25,26 +25,31 @@ In each business repo, run `/rail-setup` once before other rail engineering skil
 
 ## Skills
 
-### User-invoked
+### Main chain
 
-| Skill                                          | Role                                                |
-| ---------------------------------------------- | --------------------------------------------------- |
-| [`rail`](skills/rail/SKILL.md)                 | Router — which skill/flow fits                      |
-| [`rail-setup`](skills/rail-setup/SKILL.md)     | Configure all rail docs under `docs/monorail/`          |
-| [`rail-align`](skills/rail-align/SKILL.md)     | Align (light → `align.md`; or map mode)             |
-| [`rail-grill`](skills/rail-grill/SKILL.md)     | Stateless grilling (no codebase)                    |
-| [`rail-spec`](skills/rail-spec/SKILL.md)       | Write `spec.md` from `align.md` / cleared map       |
-| [`rail-slice`](skills/rail-slice/SKILL.md)     | Break `spec.md` into `issues/NN-*.md` with blockers |
-| [`rail-build`](skills/rail-build/SKILL.md)     | Implement one issue (parallel ⇒ worktrees)          |
-| [`rail-pass`](skills/rail-pass/SKILL.md)       | Cross-session pass document                         |
+| Skill                                      | Role                                                |
+| ------------------------------------------ | --------------------------------------------------- |
+| [`rail-setup`](skills/rail-setup/SKILL.md) | Configure all rail docs under `docs/monorail/`      |
+| [`rail-align`](skills/rail-align/SKILL.md) | Align (light → `align.md`; or map mode)             |
+| [`rail-spec`](skills/rail-spec/SKILL.md)   | Write `spec.md` from `align.md` / cleared map       |
+| [`rail-slice`](skills/rail-slice/SKILL.md) | Break `spec.md` into `issues/NN-*.md` with blockers |
+| [`rail-build`](skills/rail-build/SKILL.md) | Implement one issue (parallel ⇒ worktrees)          |
 
-### Model-invoked
+### Side paths & helpers
 
-| Skill                                            | Role                    |
-| ------------------------------------------------ | ----------------------- |
-| [`rail-tdd`](skills/rail-tdd/SKILL.md)           | Red-green-refactor      |
-| [`rail-review`](skills/rail-review/SKILL.md)     | Standards + Spec review (opt-in; not part of build) |
-| [`rail-debug`](skills/rail-debug/SKILL.md)       | Hard-bug diagnosis loop |
+| Skill                                        | Role                                                |
+| -------------------------------------------- | --------------------------------------------------- |
+| [`rail`](skills/rail/SKILL.md)               | Router — which skill/flow fits                      |
+| [`rail-grill`](skills/rail-grill/SKILL.md)   | Stateless grilling                                  |
+| [`rail-pass`](skills/rail-pass/SKILL.md)     | Cross-session pass document                         |
+| [`rail-debug`](skills/rail-debug/SKILL.md)   | Hard-bug diagnosis loop                             |
+| [`rail-review`](skills/rail-review/SKILL.md) | Standards + Spec review (opt-in; not part of build) |
+
+### Vocabulary
+
+| Skill                                  | Role                                        |
+| -------------------------------------- | ------------------------------------------- |
+| [`rail-tdd`](skills/rail-tdd/SKILL.md) | Red-green-refactor (also used inside build) |
 
 ## Acknowledgments
 
