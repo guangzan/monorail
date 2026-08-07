@@ -21,7 +21,7 @@ In each business repo, run `/rail-setup` once before other rail engineering skil
              └─ map   ──→ decisions* ═╩══→ /rail-spec ══→ /rail-slice ──→ /rail-build*
 ```
 
-`══→` auto-continues in the same session (planning chain). `*` / `──→` may need a fresh session. Each `/rail-build` takes one unblocked issue. Concurrent builds require **one git worktree per issue** (same cwd is forbidden). `/rail-spec` refuses to write without `align.md` or a cleared map.
+`══→` auto-continues in the same session (planning chain). `*` / `──→` may need a fresh session. Each `/rail-build` takes one unblocked issue — or a small **batch** of frontier issues in one session (see `rail-build` Batch mode). Concurrent builds require **one git worktree per issue** (same cwd is forbidden). `/rail-spec` refuses to write without `align.md` or a cleared map.
 
 ## Skills
 
@@ -33,7 +33,7 @@ In each business repo, run `/rail-setup` once before other rail engineering skil
 | [`rail-align`](skills/rail-align/SKILL.md) | Align (light → `align.md`; or map mode)             |
 | [`rail-spec`](skills/rail-spec/SKILL.md)   | Write `spec.md` from `align.md` / cleared map       |
 | [`rail-slice`](skills/rail-slice/SKILL.md) | Break `spec.md` into `issues/NN-*.md` with blockers |
-| [`rail-build`](skills/rail-build/SKILL.md) | Implement one issue (parallel ⇒ worktrees)          |
+| [`rail-build`](skills/rail-build/SKILL.md) | Implement one issue — or a small batch per session (parallel ⇒ worktrees) |
 
 ### Side paths & helpers
 

@@ -60,6 +60,6 @@ Each issue file must include:
 
 ### Completion
 
-Files written. In the completion message, list what was published (titles + blockers) so the user can still object next turn. **Stop here** — the planning chain ends at slice. Tell the user the next step is **`/rail-build`** on the frontier issue in a **fresh** session (one issue per session / worktree, clear context between). For multiple unblocked issues at once, follow `/rail-build` **Parallel builds** (one git worktree per issue). Do **not** auto-continue into `/rail-build`. Do **not** suggest `/implement`, `/triage`, or other foreign-pack equivalents.
+Files written. In the completion message, list what was published (titles + blockers) so the user can still object next turn. **Stop here** — the planning chain ends at slice. Tell the user the next step is **`/rail-build`** on the frontier issue in a **fresh** session (one issue per session / worktree, clear context between). For multiple unblocked issues at once: small, non-overlapping issues can run as one **batch** in a single session (see `/rail-build` Batch mode); for true concurrency follow `/rail-build` **Parallel builds** (one git worktree per issue). Do **not** auto-continue into `/rail-build`. Do **not** suggest `/implement`, `/triage`, or other foreign-pack equivalents.
 
 Near context limits: stop and suggest `/rail-pass` instead of publishing a degraded slice set.
