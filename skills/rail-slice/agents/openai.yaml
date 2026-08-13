@@ -1,5 +1,5 @@
 interface:
   display_name: "Rail Slice"
-  short_description: "Break a spec into local implementation issues"
+  short_description: "Break a spec into local implementation tasks"
 policy:
   allow_implicit_invocation: false

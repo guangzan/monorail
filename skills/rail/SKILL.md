@@ -13,8 +13,8 @@ A **flow** is a path through skills. Most work follows the **main chain**.
 1. **`/rail-setup`** — once per repo (all rail docs under `docs/monorail/`)
 2. **`/rail-align`** — light grilling → writes `align.md`; map mode if foggy/multi-session
 3. **`/rail-spec`** — write `docs/monorail/<feature>/spec.md` from `align.md` and/or a cleared map (refuses empty context)
-4. **`/rail-slice`** — write `issues/NN-*.md` with blockers
-5. **`/rail-build`** — one issue per session / worktree, or a small **batch** of frontier issues in one session (see `rail-build` Batch mode); drives `/rail-tdd`, then marks done. Concurrent builds require **separate git worktrees** (see `rail-build`)
+4. **`/rail-slice`** — write `tasks/NN-*.md` with blockers
+5. **`/rail-build`** — one task per session / worktree, or a small **batch** of frontier tasks in one session (see `rail-build` Batch mode); drives `/rail-tdd`, then marks done. Concurrent builds require **separate git worktrees** (see `rail-build`)
 
 ### Planning chain (auto-continue)
 
@@ -24,7 +24,7 @@ A **flow** is a path through skills. Most work follows the **main chain**.
 - Cleared map (no open tickets / fog) → continue `/rail-spec` → continue `/rail-slice`
 - Standalone `/rail-spec` auto-continues to `/rail-slice`; `/rail-slice` ends the planning chain (suggest `/rail-build` only)
 
-**Do not auto-continue into `/rail-build`.** After slice (or when build finishes an issue), suggest `/rail-build` for a **fresh** session — or a **batch** of small frontier issues in one session (`rail-build` Batch mode). Clear context between each `/rail-build` unless using Batch mode, which isolates implementation in fresh sub-agents. To run several builds at once, set up **one git worktree per issue** first — more sessions on the same cwd are not parallel-safe.
+**Do not auto-continue into `/rail-build`.** After slice (or when build finishes a task), suggest `/rail-build` for a **fresh** session — or a **batch** of small frontier tasks in one session (`rail-build` Batch mode). Clear context between each `/rail-build` unless using Batch mode, which isolates implementation in fresh sub-agents. To run several builds at once, set up **one git worktree per task** first — more sessions on the same cwd are not parallel-safe.
 
 **Stop auto-continue when:** the user asked to stop after this stage; context is near limits (use `/rail-pass`); or an adequacy / map / fail-closed gate says stop.
 

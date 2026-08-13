@@ -22,14 +22,14 @@ docs/monorail/
 - Light-align output: `docs/monorail/<feature-slug>/align.md` — required before `/rail-spec` when there is no cleared map
 - Session pass (optional): `docs/monorail/<feature-slug>/pass-<date>.md` — from `/rail-pass`
 - Spec: `docs/monorail/<feature-slug>/spec.md`
-- Implementation issues: `docs/monorail/<feature-slug>/issues/<NN>-<slug>.md`, numbered from `01`
+- Implementation tasks: `docs/monorail/<feature-slug>/tasks/<NN>-<slug>.md`, numbered from `01`
 - Decision tickets (map mode): `docs/monorail/<feature-slug>/decisions/<NN>-<slug>.md`
 - Research notes (map mode): `docs/monorail/<feature-slug>/notes/<NN>-<slug>.md` — required when a `Type: research` ticket is resolved
 - Map: `docs/monorail/<feature-slug>/map.md`
-- Keep align, map, spec, and issues under the **same** `<feature-slug>` for one effort (planning chain stays in that directory)
+- Keep align, map, spec, and tasks under the **same** `<feature-slug>` for one effort (planning chain stays in that directory)
 - **New** `/rail-align` (light persist or map charting) always opens a **new** `<feature-slug>/` — never ask the user for the slug; never write into another effort's directory (link prior aligns from Domain pointers if needed). Map **work-through** stays on the existing map's slug
 - Triage/status is a `Status:` line near the top of each ticket file
-- Implementation issue status: `open` | `claimed` | `done`
+- Implementation task status: `open` | `claimed` | `done`
 - Decision ticket status: `open` | `claimed` | `resolved`
 - Comments append under a `## Comments` heading
 
@@ -39,13 +39,13 @@ Create or update files under `docs/monorail/<feature-slug>/` (create the directo
 
 ## When a skill says "fetch the ticket"
 
-Read the file at the given path. The user normally passes the path or issue number.
+Read the file at the given path. The user normally passes the path or task number.
 
 ## Frontier
 
-- **Implementation issues:** `Status: open`, every `Blocked by` target is `Status: done`, not yet `claimed`; lowest `NN` wins
-- **Batch `/rail-build`:** distinct frontier issues run **sequentially** in one session (claim each first; one worktree, no parallel writers) — see `/rail-build` Batch mode
-- **Parallel `/rail-build`:** only on distinct frontier issues; **one git worktree per issue** (claim on the primary worktree first). Same working tree must not run two builds at once — see `/rail-build` Parallel builds
+- **Implementation tasks:** `Status: open`, every `Blocked by` target is `Status: done`, not yet `claimed`; lowest `NN` wins
+- **Batch `/rail-build`:** distinct frontier tasks run **sequentially** in one session (claim each first; one worktree, no parallel writers) — see `/rail-build` Batch mode
+- **Parallel `/rail-build`:** only on distinct frontier tasks; **one git worktree per task** (claim on the primary worktree first). Same working tree must not run two builds at once — see `/rail-build` Parallel builds
 
 ## Adequacy for `/rail-spec`
 

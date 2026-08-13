@@ -74,4 +74,4 @@ If no correct seam exists, that is the finding — document it; architecture may
 
 Ask what would have prevented this bug. If the answer is architectural, recommend a follow-up `/rail-align` (then `/rail-spec` if the fix is large) — do not invent a skill that is not in the rail pack.
 
-If diagnosis happened mid-feature and an implementation issue remains, suggest resuming with `/rail-build` on that issue in a **fresh** session.
+If diagnosis happened mid-feature and an implementation task remains, suggest resuming with `/rail-build` on that task in a **fresh** session.

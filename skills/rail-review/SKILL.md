@@ -8,7 +8,7 @@ description: Two-axis review of the diff since a fixed point — Standards and S
 Review `git diff <fixed-point>...HEAD` on two axes in **parallel sub-agents**:
 
 - **Standards** — repo coding standards + Fowler smell baseline (repo docs win on conflict)
-- **Spec** — faithfulness to the originating `docs/monorail/**/spec.md` and/or issue file
+- **Spec** — faithfulness to the originating `docs/monorail/**/spec.md` and/or task file
 
 ## Process
 
@@ -25,7 +25,7 @@ Confirm `git rev-parse <fixed-point>` and a non-empty diff before continuing.
 Order:
 
 1. Path the user passed as an argument
-2. `docs/monorail/<feature>/spec.md` plus the issue file being built
+2. `docs/monorail/<feature>/spec.md` plus the task file being built
 3. Ask the user where the spec is
 4. If none, Spec axis reports "no spec available"
 
@@ -55,7 +55,7 @@ Send a single message with two Agent/Task tool calls. Use the general-purpose (o
 **Spec sub-agent prompt** — include:
 
 - The diff command and commit list
-- Path or contents of the spec/issue
+- Path or contents of the spec/task
 - Brief: (a) missing/partial requirements; (b) scope creep; (c) wrong implementations. Quote spec lines. Under 400 words.
 
 If the spec is missing, skip the Spec sub-agent and note that in the final report.
@@ -66,8 +66,8 @@ Present under `## Standards` and `## Spec` separately. Do not merge or rerank ac
 
 **Blocking vs non-blocking:**
 
-- **Blocking (Spec):** missing/partial acceptance behaviour the issue or `spec.md` required; clearly wrong implementation of a quoted requirement
+- **Blocking (Spec):** missing/partial acceptance behaviour the task or `spec.md` required; clearly wrong implementation of a quoted requirement
 - **Blocking (Standards):** hard violation of a **documented** repo standard (cite file + rule)
-- **Non-blocking:** Fowler smell-baseline heuristics; style nits tooling already covers; speculative scope the issue did not ask for (still report under Spec as scope creep, but not blocking unless it contradicts the issue)
+- **Non-blocking:** Fowler smell-baseline heuristics; style nits tooling already covers; speculative scope the task did not ask for (still report under Spec as scope creep, but not blocking unless it contradicts the task)
 
-Do not commit or push as part of review. Do not set issue `Status: done`.
+Do not commit or push as part of review. Do not set task `Status: done`.

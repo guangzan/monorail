@@ -57,7 +57,7 @@ If durable sources exist but a **few** gaps block a coherent spec, ask only thos
 
 Write `docs/monorail/<feature-slug>/spec.md` using the template below.
 
-**Continue the planning chain** for this same `<slug>`: read and follow `/rail-slice` in this same session (writes `docs/monorail/<slug>/issues/NN-*.md`). Do **not** stop and ask the user to type `/rail-slice`. Do **not** substitute foreign-pack skills — e.g. `/to-tickets`, `/to-issues`, `/to-prd`, `/to-spec` — even if those are installed. Do **not** open GitHub/GitLab Issues for rail work. Do **not** auto-continue into `/rail-build`.
+**Continue the planning chain** for this same `<slug>`: read and follow `/rail-slice` in this same session (writes `docs/monorail/<slug>/tasks/NN-*.md`). Do **not** stop and ask the user to type `/rail-slice`. Do **not** substitute foreign-pack skills — e.g. `/to-tickets`, `/to-issues`, `/to-prd`, `/to-spec` — even if those are installed. Do **not** open GitHub/GitLab Issues for rail work. Do **not** auto-continue into `/rail-build`.
 
 **Exceptions (stop instead):** user asked to stop after spec; context near limits → `/rail-pass` (do not write a degraded spec, and do not continue to slice).
 

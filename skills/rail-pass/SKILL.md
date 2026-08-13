@@ -13,10 +13,10 @@ Write a pass document so a fresh agent can continue. Save under the OS temp dire
 - Goal of the next session
 - Decisions already made (pointers under `docs/monorail/` — `CONTEXT.md`, ADRs, feature paths — do not duplicate)
 - If light align finished decisions but `align.md` is not written yet: say so explicitly and make writing `align.md` the next-session goal (do not start `/rail-spec` until it exists)
-- If `align.md` or a cleared map exists but `spec.md` / issues are not done: next-session goal is continue the **planning chain** (`/rail-spec`, which auto-continues to `/rail-slice`) — do not ask the user to type each stage separately
+- If `align.md` or a cleared map exists but `spec.md` / tasks are not done: next-session goal is continue the **planning chain** (`/rail-spec`, which auto-continues to `/rail-slice`) — do not ask the user to type each stage separately
 - Open questions
 - Suggested skills (`/rail-align`, `/rail-spec`, `/rail-build`, …) — planning-chain skills auto-continue downstream; `/rail-build` stays a fresh-session suggest (concurrent builds need separate worktrees)
-- Exact file paths to read first (`align.md`, `map.md`, `spec.md`, issue file, …)
+- Exact file paths to read first (`align.md`, `map.md`, `spec.md`, task file, …)
 
 ## Rules
 
