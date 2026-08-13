@@ -53,4 +53,4 @@ In each business repo, run `/rail-setup` once before other rail engineering skil
 
 ## Acknowledgments
 
-Ideas and inspiration from [mattpocock/skills](https://github.com/mattpocock/skills).
+Ideas and inspiration from [mattpocock/skills](https://github.com/mattpocock/skills) and [obra/superpowers](https://github.com/obra/superpowers).
