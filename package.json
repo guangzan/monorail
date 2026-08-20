@@ -1,6 +1,6 @@
 {
   "name": "monorail",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "description": "Local-first agent skills for align → spec → slice → build",
   "repository": {
