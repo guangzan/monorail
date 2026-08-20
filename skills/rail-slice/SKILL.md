@@ -1,6 +1,6 @@
 ---
 name: rail-slice
-description: Break an existing docs/monorail/<feature>/spec.md into tracer-bullet tasks under tasks/, each with Blocked by edges. Ends the planning chain — next step is rail-build in a fresh session.
+description: Break an existing docs/monorail/<feature>/spec.md into tracer-bullet tasks under tasks/, each with Blocked by edges. Ends the planning chain — next step is user-triggered rail-build (same-session serial run).
 disable-model-invocation: true
 ---
 
@@ -60,6 +60,6 @@ Each task file must include:
 
 ### Completion
 
-Files written. In the completion message, list what was published (titles + blockers) so the user can still object next turn. **Stop here** — the planning chain ends at slice. Tell the user the next step is **`/rail-build`** on the frontier task in a **fresh** session (one task per session / worktree, clear context between). For multiple unblocked tasks at once: small, non-overlapping tasks can run as one **batch** in a single session (see `/rail-build` Batch mode); for true concurrency follow `/rail-build` **Parallel builds** (one git worktree per task). Do **not** auto-continue into `/rail-build`. Do **not** suggest `/implement`, `/triage`, or other foreign-pack equivalents.
+Files written. In the completion message, list what was published (titles + blockers) so the user can still object next turn. **Stop here** — the planning chain ends at slice; do **not** auto-continue into `/rail-build` (you can review the task list first). Tell the user the next step is **`/rail-build`** — user-triggered, and it runs tasks **serially in the same session** (no fresh session; non-trivial tasks get a fresh implementer sub-agent, trivial ones run inline; build asks once up front whether to run to queue-clear or pause between tasks for review). For true concurrency follow `/rail-build` **Parallel builds** (one git worktree per task). Do **not** suggest `/implement`, `/triage`, or other foreign-pack equivalents.
 
 Near context limits: stop and suggest `/rail-pass` instead of publishing a degraded slice set.

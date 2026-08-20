@@ -21,7 +21,7 @@ npx skills add guangzan/monorail
              └─ map   ──→ decisions* ═╩══→ /rail-spec ══→ /rail-slice ──→ /rail-build*
 ```
 
-`══→` 表示同会话自动续跑（规划链）。`*` / `──→` 可能需要新会话。每次 `/rail-build` 只处理一个未被阻塞的 task——或在一个会话里跑一小批 frontier tasks（见 `rail-build` Batch mode）。并发多张时必须 **一 task 一 git worktree**（禁止同一 cwd 并行）。没有 `align.md` 或未清完 map 时，`/rail-spec` 会拒绝写入。
+`══→` 表示同会话自动续跑（规划链）。`*` 表示下一步**用户手动触发**——`/rail-build` 在同一会话里**串行跑** frontier tasks（非平凡 task 派发全新 implementer 子代理，无需新会话）。并发多张时必须 **一 task 一 git worktree**（禁止同一 cwd 并行）。没有 `align.md` 或未清完 map 时，`/rail-spec` 会拒绝写入。
 
 ## Skills
 
@@ -33,7 +33,7 @@ npx skills add guangzan/monorail
 | [`rail-align`](skills/rail-align/SKILL.md) | 对齐需求（light → `align.md`；或 map 模式）      |
 | [`rail-spec`](skills/rail-spec/SKILL.md)   | 从 `align.md` / 已清完的 map 写 `spec.md`        |
 | [`rail-slice`](skills/rail-slice/SKILL.md) | 将 `spec.md` 拆成带 blockers 的 `tasks/NN-*.md` |
-| [`rail-build`](skills/rail-build/SKILL.md) | 实现 task——或每会话跑一小批（并发须 worktree）   |
+| [`rail-build`](skills/rail-build/SKILL.md) | 同会话串行实现 tasks（并发须 worktree）   |
 
 ### 旁路与辅助
 
