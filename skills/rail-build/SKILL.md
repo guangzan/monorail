@@ -12,15 +12,15 @@ If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup
 
 ## Process
 
-1. Load the task file and its parent `spec.md`. If `spec.md` is missing, stop and suggest `/rail-spec`. Confirm blockers are done (blocker tasks show `Status: done`).
+1. Load the task file and its parent `spec.md`. If `spec.md` is missing, stop and suggest `/rail-spec`. Confirm blockers are done (blocker tasks show `Status: done`). If the task shows `Status: claimed` but its `## Comments` has no matching `Run <date>: start` line (a stale claim from a crashed run), recover it: revert to `Status: open` with a `## Comments` note before working — a stale `claimed` silently blocks the frontier.
 2. If the task is too large for one context window, stop and suggest `/rail-slice` re-split or `/rail-align` — do not hard-code a giant task.
 3. Claim: set `Status: claimed` on the task file before coding.
 4. **Parallel scout** (read-only) — before writing any test or production code, map the territory with concurrent sub-agents (see below). Synthesize their reports, then **verify the seams already set in the spec's `## Testing Decisions`**: the scout's job is to confirm those seams hold against the code, **not** to re-derive or re-ask. Raise a seam question with the user **only if** scout contradicts the spec (a seam is missing, wrong, or overlaps unlisted code); otherwise proceed on the spec's seams. If dispatch is delayed until the orchestrator context is heavy, write the synthesis to a scratch note so the implementer brief is not degraded.
-5. Drive `/rail-tdd` at the agreed seams. Do **not** start TDD until scout has returned (or the sequential fallback finished).
+5. Drive `/rail-tdd` at the task's `Seams:` line (set at slice time from the spec's code-anchored `## Testing Decisions`). Do **not** start TDD until scout has returned (or the sequential fallback finished).
 6. Run typecheck / relevant tests regularly; full suite once at the end.
-7. Set task `Status: done` when the task's behaviour is covered (TDD complete at the agreed seams) and typecheck / relevant tests are green. Do **not** run `/rail-review` as part of build — review is opt-in (see `/rail-review`).
+7. Set task `Status: done` when the task's behaviour is covered (TDD complete at the task's `Seams:`) and typecheck / relevant tests are green — and append the done-gate block under `## Comments` (see §3.2). Do **not** run `/rail-review` as part of build — review is opt-in (see `/rail-review`).
 8. Commit on the current branch only when the user's rules / request allow committing.
-9. **Continue or stop.** Another frontier task exists and the user's go-ahead covers it → continue serially (see **Serial run**). Otherwise stop and report where you left off. When the run ends with no open/unblocked tasks remaining, say the feature's implementation queue is clear (human decides merge/ship; a new feature starts at `/rail-align`).
+9. **Continue or stop.** Another frontier task exists and the user's go-ahead covers it → continue serially (see **Serial run**). Otherwise stop and report where you left off. When the run ends with no open/unblocked tasks remaining, cross-check that every numbered `## User Stories` entry in `spec.md` is covered by a `done` task (or explicitly out of scope) — report any uncovered story instead of claiming the queue is clear — then say the feature's implementation queue is clear (human decides merge/ship; a new feature starts at `/rail-align`).
 
 **Frontier (implementation):** `Status: open`, every listed blocker is `Status: done`, not claimed; lowest `NN` wins (see `docs/monorail/work-tracker.md`).
 
@@ -42,21 +42,31 @@ Fit check (before the run):
 
 - **File map:** list per-task files; order the run by file ownership and `Blocked by` edges, not by `NN`.
 - **Contradiction scan:** acceptance criteria that conflict, two tasks owning the same public symbol, seams that overlap. Present everything as **one** up-front question before coding — not one interrupt per task.
-- **Seams:** take each task's seams from the spec's `## Testing Decisions` (code-anchored and confirmed at spec time); the scout re-verifies them. Do not ask again mid-run unless scout contradicts the spec.
+- **Seams:** each task's `Seams:` line was set at slice time from the spec's `## Testing Decisions` (code-anchored and confirmed at spec time); the scout re-verifies them against the code. Do not ask again mid-run unless scout contradicts a listed seam.
 - **Review pause:** if the user chose "pause between tasks", insert a review stop after each task's commit (the commit is the hand-off point) and wait for a go-ahead before the next task.
 
 ### 2. Claim and record
 
 - Claim each task (`Status: claimed`) and commit those edits before the run, so status is durable (follow the user's commit rules).
-- Under each task's `## Comments`, append `Run <date>: start — <base commit>`; after each task, append `done — <commits>`. These lines are the resume map after `/rail-pass` or a crash.
+- Under each task's `## Comments`, append `Run <date>: start — <base commit>`; when the task is done, append a **done-gate block**:
+
+  ```
+  done — <commits>
+  - seams used: <from the task's `Seams:`>
+  - typecheck: green
+  - relevant tests: green (which)
+  - acceptance criteria: met (or itemised open gaps)
+  ```
+
+  These lines are the resume map after `/rail-pass` or a crash, and they make `Status: done` audit-able — a `done` with no done-gate block is not credible. A `claimed` task with no matching `Run … start` line is a stale claim; recover it to `open` (Process §1).
 
 ### 3. Run (sequential, no check-ins)
 
 For each task in order:
 
-1. **Keep the orchestrator head clean.** For a **non-trivial** task, dispatch a **fresh implementer sub-agent** (sequential — wait for it to return before the next). Its brief must be self-contained: absolute paths to the task file and `spec.md`, `What to build` and `Acceptance criteria` pasted in full, the agreed seams for this task, and "TDD at these seams — red before green; do not touch other tasks' files; read-only on the tracker". If the harness cannot spawn sub-agents, implement the task yourself — **sequentially**. Never dispatch two implementers on the same tree. For a **trivial** task, implement it inline in the main session — no sub-agent overhead.
+1. **Keep the orchestrator head clean.** For a **non-trivial** task, dispatch a **fresh implementer sub-agent** (sequential — wait for it to return before the next). Its brief must be self-contained: absolute paths to the task file and `spec.md`, `What to build`, `Acceptance criteria`, the task's `Seams:` line (and `Touchpoints:` if present) pasted in full, and "TDD at these seams — red before green; do not touch other tasks' files; read-only on the tracker". If the harness cannot spawn sub-agents, implement the task yourself — **sequentially**. Never dispatch two implementers on the same tree. For a **trivial** task, implement it inline in the main session — no sub-agent overhead.
 2. When the implementer returns (or you finish inline): run typecheck / relevant tests yourself and check the acceptance criteria against the code.
-3. Green → set `Status: done`, append the `done` line, commit (per the user's commit rules), continue. **Do not pause between tasks** to ask "continue?" — the run was the go-ahead (unless review-pause was chosen in pre-flight).
+3. Green → set `Status: done`, append the done-gate block, commit (per the user's commit rules), continue. **Do not pause between tasks** to ask "continue?" — the run was the go-ahead (unless review-pause was chosen in pre-flight).
 4. Red or criteria not met → send the failing evidence back to the same implementer (its context is intact); if it cannot resolve, stop per §4. Never mark `done` on red.
 
 ### 4. Stop conditions (reactive, task-level)
@@ -67,7 +77,7 @@ For each task in order:
 - User narrowed or ended the run → stop at that point and report where you left off (what's `done`, what's next).
 - Harness poor fit for long sessions → fall back to one-task-per-fresh-session mode. That is the escape hatch, not the default.
 
-`done` still means green at the agreed seams, per task — a partially implemented task is not `done`. Run the full suite once at the end of the run.
+`done` still means green at the task's `Seams:`, per task — a partially implemented task is not `done`. Run the full suite once at the end of the run.
 
 A serial run does not replace **Parallel builds** below (true concurrency still needs one worktree per task — one serial run per worktree).
 
@@ -111,7 +121,7 @@ Send a **single message** with up to three Agent/Task tool calls (explore / gene
 
 Omit a sub-agent only when its inputs clearly do not exist (e.g. no `CONTEXT.md` and no ADRs — skip Domain docs and note that). Always run **Code map** and **Test / seam precedents** when any code exists in the repo.
 
-Each scout prompt must include: absolute paths to the task file and `spec.md`, the task's `What to build` (or equivalent) pasted in full, and "read-only — do not modify the repo".
+Each scout prompt must include: absolute paths to the task file and `spec.md`, the task's `What to build` (or equivalent) and `Seams:` line pasted in full, and "read-only — do not modify the repo".
 
 After all scouts return: synthesize, then **compare against the spec's `## Testing Decisions`**. Matching seams → proceed, do **not** ask. Divergence (a spec seam is missing, wrong, or overlaps unlisted code) → raise only that divergence with the user. Then continue at step 5.
 

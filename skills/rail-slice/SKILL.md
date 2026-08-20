@@ -53,10 +53,14 @@ Each task file must include:
 - Title line: `# NN — <Task title>`
 - `Status: open`
 - `Blocked by: None` or `Blocked by: NN, NN`
+- `Seams:` — the code-anchored seams from the spec's `## Testing Decisions` that apply to **this** task, each with the file/test pointer that anchors it. This is how the spec's single seam decision reaches the implementer — never leave the seam derivation to be re-done in the build session
+- `Touchpoints:` (recommended) — the concrete files/paths this task will touch, so `/rail-build`'s file-map pre-flight derives ownership from the tasks instead of re-scanning
 - `## What to build` — end-to-end behaviour from the user perspective
 - `## Acceptance criteria` — checklist items
 
 `Blocked by` lists `NN` numbers/titles or `None`.
+
+**Story-coverage check (before publish):** every numbered `## User Stories` entry in `spec.md` maps to at least one task (or is explicitly out of scope). List any uncovered story as a warning in the completion message — do not silently drop a story.
 
 ### Completion
 

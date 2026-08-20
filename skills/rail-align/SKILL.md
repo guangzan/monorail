@@ -35,6 +35,7 @@ If map mode's first breadth pass finds **no fog**, do not create a map — stay 
    - Domain docs alone are **not** enough — `/rail-spec` requires this file (or a cleared map)
 4. **Continue the planning chain** for this same `<slug>`: read and follow `/rail-spec` in this same session (then that skill continues to `/rail-slice`). Do **not** stop and ask the user to type `/rail-spec`. Do **not** substitute `/to-spec` or other foreign-pack equivalents.
    - **Exceptions (stop instead):** user asked to stop after align; context near limits → `/rail-pass`
+   - **Budget check (before auto-continuing):** the light grilling may have already spent a large share of this session's context. If so, stop here — `align.md` is durable, and `/rail-spec` resumes it fresh next session (its code-grounding pass and single seam confirmation deserve a clean window). When in doubt prefer stopping with `align.md` written. This is a self-determined stop, not a new question for the user.
 
 ### `align.md` template
 

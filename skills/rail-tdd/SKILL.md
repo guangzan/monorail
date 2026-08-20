@@ -19,7 +19,10 @@ See [tests.md](tests.md) for examples and [mocking.md](mocking.md) for mocking g
 
 A **seam** is the public boundary you test at. Tests live at seams, never against internals.
 
-**Test only at pre-agreed seams.** Before writing any test, write down the seams under test and confirm them with the user. No test is written at an unconfirmed seam.
+**Test only at pre-agreed seams.** Before writing any test, write down the seams under test.
+
+- **Standalone `/rail-tdd`:** confirm the seams with the user once before writing. No test is written at an unconfirmed seam.
+- **Inside `/rail-build`:** the task's `Seams:` line is already agreed — it was set at slice time from the spec's code-anchored `## Testing Decisions`, and build's scout re-verifies it. Record it, do **not** re-confirm with the user; raise only when the code contradicts a listed seam. No test is written at a seam not on the task's `Seams:` line.
 
 Ask: "What's the public interface, and which seams should we test?"
 

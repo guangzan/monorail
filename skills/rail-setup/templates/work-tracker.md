@@ -23,13 +23,14 @@ docs/monorail/
 - Session pass (optional): `docs/monorail/<feature-slug>/pass-<date>.md` — from `/rail-pass`
 - Spec: `docs/monorail/<feature-slug>/spec.md`
 - Implementation tasks: `docs/monorail/<feature-slug>/tasks/<NN>-<slug>.md`, numbered from `01`
+  - Each task file carries `Seams:` (the code-anchored seams from the spec's `## Testing Decisions` that apply to that task) and optional `Touchpoints:` (files it will touch); `/rail-build` consumes both (see `/rail-slice`, `/rail-build`)
 - Decision tickets (map mode): `docs/monorail/<feature-slug>/decisions/<NN>-<slug>.md`
 - Research notes (map mode): `docs/monorail/<feature-slug>/notes/<NN>-<slug>.md` — required when a `Type: research` ticket is resolved
 - Map: `docs/monorail/<feature-slug>/map.md`
 - Keep align, map, spec, and tasks under the **same** `<feature-slug>` for one effort (planning chain stays in that directory)
 - **New** `/rail-align` (light persist or map charting) always opens a **new** `<feature-slug>/` — never ask the user for the slug; never write into another effort's directory (link prior aligns from Domain pointers if needed). Map **work-through** stays on the existing map's slug
 - Triage/status is a `Status:` line near the top of each ticket file
-- Implementation task status: `open` | `claimed` | `done`
+- Implementation task status: `open` | `claimed` | `done` (`done` implies a `## Comments` done-gate block — see `/rail-build`)
 - Decision ticket status: `open` | `claimed` | `resolved`
 - Comments append under a `## Comments` heading
 
