@@ -15,7 +15,7 @@ If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup
 1. Load the task file and its parent `spec.md`. If `spec.md` is missing, stop and suggest `/rail-spec`. Confirm blockers are done (blocker tasks show `Status: done`).
 2. If the task is too large for one context window, stop and suggest `/rail-slice` re-split or `/rail-align` — do not hard-code a giant task.
 3. Claim: set `Status: claimed` on the task file before coding.
-4. **Parallel scout** (read-only) — before writing any test or production code, map the territory with concurrent sub-agents (see below). Synthesize their reports, then confirm seams with the user if not already agreed in the spec's Testing Decisions. If dispatch is delayed until the orchestrator context is heavy, write the synthesis to a scratch note so the implementer brief is not degraded.
+4. **Parallel scout** (read-only) — before writing any test or production code, map the territory with concurrent sub-agents (see below). Synthesize their reports, then **verify the seams already set in the spec's `## Testing Decisions`**: the scout's job is to confirm those seams hold against the code, **not** to re-derive or re-ask. Raise a seam question with the user **only if** scout contradicts the spec (a seam is missing, wrong, or overlaps unlisted code); otherwise proceed on the spec's seams. If dispatch is delayed until the orchestrator context is heavy, write the synthesis to a scratch note so the implementer brief is not degraded.
 5. Drive `/rail-tdd` at the agreed seams. Do **not** start TDD until scout has returned (or the sequential fallback finished).
 6. Run typecheck / relevant tests regularly; full suite once at the end.
 7. Set task `Status: done` when the task's behaviour is covered (TDD complete at the agreed seams) and typecheck / relevant tests are green. Do **not** run `/rail-review` as part of build — review is opt-in (see `/rail-review`).
@@ -42,7 +42,7 @@ Fit check (before the run):
 
 - **File map:** list per-task files; order the run by file ownership and `Blocked by` edges, not by `NN`.
 - **Contradiction scan:** acceptance criteria that conflict, two tasks owning the same public symbol, seams that overlap. Present everything as **one** up-front question before coding — not one interrupt per task.
-- **Seams:** write down the seams per task from the spec's Testing Decisions, confirm once, then never ask again mid-run.
+- **Seams:** take each task's seams from the spec's `## Testing Decisions` (code-anchored and confirmed at spec time); the scout re-verifies them. Do not ask again mid-run unless scout contradicts the spec.
 - **Review pause:** if the user chose "pause between tasks", insert a review stop after each task's commit (the commit is the hand-off point) and wait for a go-ahead before the next task.
 
 ### 2. Claim and record
@@ -113,7 +113,7 @@ Omit a sub-agent only when its inputs clearly do not exist (e.g. no `CONTEXT.md`
 
 Each scout prompt must include: absolute paths to the task file and `spec.md`, the task's `What to build` (or equivalent) pasted in full, and "read-only — do not modify the repo".
 
-After all scouts return: synthesize into a short seam proposal for the user (or reuse seams already settled in the spec). Then continue at step 5.
+After all scouts return: synthesize, then **compare against the spec's `## Testing Decisions`**. Matching seams → proceed, do **not** ask. Divergence (a spec seam is missing, wrong, or overlaps unlisted code) → raise only that divergence with the user. Then continue at step 5.
 
 **Do not** dispatch implementation or fix sub-agents in parallel on the same working tree during build — that is out of scope for scout. For multi-task throughput, use **Parallel builds** (worktrees) above.
 

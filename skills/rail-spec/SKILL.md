@@ -43,11 +43,14 @@ If the map still has open decision tickets or non-empty fog under Not yet specif
 - If `map.md` exists, read Decisions so far and linked decision answers (and `notes/` when cited) — fold them in; do not leave decisions only on the map
 - Use conversation only to enrich, never as the sole source after a fresh session
 
-### 4. Explore and seams
+### 4. Code-ground the seams (mandatory)
 
-Explore the codebase if needed. Use `docs/monorail/CONTEXT.md` vocabulary; respect ADRs under `docs/monorail/adr/`.
+Before writing, run a **read-only grounding pass** so the spec's seams are anchored in the actual code — this is **not optional**: the spec's `## Testing Decisions` is the single seam decision for the effort, and `/rail-build` verifies it rather than re-confirming.
 
-Sketch test seams (prefer existing, highest seam, few seams). Confirm seams with the user before writing.
+- Explore the codebase. Use `docs/monorail/CONTEXT.md` vocabulary; respect ADRs under `docs/monorail/adr/`.
+- Run the same scouting trio as `rail-build`'s parallel scout: **code map** (paths/types/call chains named or implied), **test / seam precedents** (existing tests and public boundaries near those paths), **domain docs** (CONTEXT, ADRs, coding standards). Offload to read-only sub-agents if the harness supports it; run the three scopes sequentially otherwise. Always run code map + test precedents when any code exists.
+- Write the validated outcome into `## Testing Decisions`: external behaviour, then seams — prefer existing seams, highest seam, few seams — each with a pointer to the file/test that anchors it. Do not leave seams as a sketch.
+- **Confirm seams with the user once, here** — this is the single seam decision; downstream build only re-raises a seam on a real contradiction.
 
 ### 5. Gap-closing only (not a full grill)
 
