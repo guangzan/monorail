@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Rail Build
 
-Implement tasks from `docs/monorail/<feature>/tasks/`. **One session, serial run**: after a task goes green, continue to the next frontier task in the **same** session — no fresh session, no "continue?" check-ins between tasks (unless the user chose review-pause up front).
+Implement tasks from `docs/monorail/<feature>/tasks/`. **One session, serial run**: after a task goes green, continue to the next frontier task in the **same** session — no fresh session, no check-ins or questions between tasks. Defaults: run to queue-clear, **one commit per task** on the current branch. The skill never asks about run length or commit policy — the user states any deviation (review pause, no-commit, narrower run) in their command and the agent honors it.
 
 If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup` and stop.
 
@@ -15,11 +15,11 @@ If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup
 1. Load the task file and its parent `spec.md`. If `spec.md` is missing, stop and suggest `/rail-spec`. Confirm blockers are done (blocker tasks show `Status: done`). If the task shows `Status: claimed` but its `## Comments` has no matching `Run <date>: start` line (a stale claim from a crashed run), recover it: revert to `Status: open` with a `## Comments` note before working — a stale `claimed` silently blocks the frontier.
 2. If the task is too large for one context window, stop and suggest `/rail-slice` re-split or `/rail-align` — do not hard-code a giant task.
 3. Claim: set `Status: claimed` on the task file before coding.
-4. **Parallel scout** (read-only) — before writing any test or production code, map the territory with concurrent sub-agents (see below). Synthesize their reports, then **verify the seams already set in the spec's `## Testing Decisions`**: the scout's job is to confirm those seams hold against the code, **not** to re-derive or re-ask. Raise a seam question with the user **only if** scout contradicts the spec (a seam is missing, wrong, or overlaps unlisted code); otherwise proceed on the spec's seams. If dispatch is delayed until the orchestrator context is heavy, write the synthesis to a scratch note so the implementer brief is not degraded.
+4. **Parallel scout** (read-only) — before writing any test or production code, map the territory with concurrent sub-agents (see below). Synthesize their reports, then **verify the seams already set in the spec's `## Testing Decisions`**: the scout's job is to confirm those seams hold against the code, **not** to re-derive or re-ask. If scout contradicts the spec (a seam is missing, wrong, or overlaps unlisted code), **do not re-derive seams and do not keep coding** — stop per §4 and report; otherwise proceed on the spec's seams. If dispatch is delayed until the orchestrator context is heavy, write the synthesis to a scratch note so the implementer brief is not degraded.
 5. Drive `/rail-tdd` at the task's `Seams:` line (set at slice time from the spec's code-anchored `## Testing Decisions`). Do **not** start TDD until scout has returned (or the sequential fallback finished).
 6. Run typecheck / relevant tests regularly; full suite once at the end.
 7. Set task `Status: done` when the task's behaviour is covered (TDD complete at the task's `Seams:`) and typecheck / relevant tests are green — and append the done-gate block under `## Comments` (see §3.2). Do **not** run `/rail-review` as part of build — review is opt-in (see `/rail-review`).
-8. Commit on the current branch only when the user's rules / request allow committing.
+8. Commit **once per task** on the current branch (default policy — the task's single commit carries its claim and status changes); skip committing only when the user opted out for this run.
 9. **Continue or stop.** Another frontier task exists and the user's go-ahead covers it → continue serially (see **Serial run**). Otherwise stop and report where you left off. When the run ends with no open/unblocked tasks remaining, cross-check that every numbered `## User Stories` entry in `spec.md` is covered by a `done` task (or explicitly out of scope) — report any uncovered story instead of claiming the queue is clear — then say the feature's implementation queue is clear (human decides merge/ship; a new feature starts at `/rail-align`).
 
 **Frontier (implementation):** `Status: open`, every listed blocker is `Status: done`, not claimed; lowest `NN` wins (see `docs/monorail/work-tracker.md`).
@@ -30,7 +30,7 @@ Never run two tasks in the same working tree **concurrently** — serial runs ar
 
 The default is **one prolonged session**: green tasks keep coming — one working tree, one commit per task, no new sessions. A serial run is throughput, not parallelism; parallel execution still requires worktrees (next section).
 
-A serial run is the default once build starts. If the user has not already signalled the run's length, ask **once** up front — e.g. "run to queue-clear, or pause between tasks for review?" — then never ask again mid-run. Run to queue-clear is the default; the user can narrow it anytime ("just this task", "stop after task k").
+A serial run is the default once build starts — **ask nothing**: no up-front question about run length or commit policy, no check-ins mid-run. Run to queue-clear and one commit per task are the defaults; the user can narrow or override them anytime ("just this task", "stop after task k", "don't commit", "pause between tasks") — honor that statement, never prompt for it.
 
 Fit check (before the run):
 
@@ -41,13 +41,13 @@ Fit check (before the run):
 ### 1. Pre-flight (once, per run)
 
 - **File map:** list per-task files; order the run by file ownership and `Blocked by` edges, not by `NN`.
-- **Contradiction scan:** acceptance criteria that conflict, two tasks owning the same public symbol, seams that overlap. Present everything as **one** up-front question before coding — not one interrupt per task.
-- **Seams:** each task's `Seams:` line was set at slice time from the spec's `## Testing Decisions` (code-anchored and confirmed at spec time); the scout re-verifies them against the code. Do not ask again mid-run unless scout contradicts a listed seam.
-- **Review pause:** if the user chose "pause between tasks", insert a review stop after each task's commit (the commit is the hand-off point) and wait for a go-ahead before the next task.
+- **Contradiction scan:** acceptance criteria that conflict, two tasks owning the same public symbol, seams that overlap. A contradiction is a spec/task defect — do not ask and do not guess; stop per §4 and report.
+- **Seams:** each task's `Seams:` line was set at slice time from the spec's `## Testing Decisions` (code-anchored and confirmed at spec time); the scout re-verifies them against the code. No seam questions mid-run — a scout contradiction stops the run per §4.
+- **Review pause:** only if the user asked for it in their command — insert a review stop after each task's commit (the commit is the hand-off point) and wait for a go-ahead before the next task. Never offer it.
 
 ### 2. Claim and record
 
-- Claim each task (`Status: claimed`) and commit those edits before the run, so status is durable (follow the user's commit rules).
+- Claim each task (`Status: claimed`) before coding. In a serial run the claim rides in that task's single commit — no separate claim commits. Parallel builds commit claim edits before forking worktrees (see below).
 - Under each task's `## Comments`, append `Run <date>: start — <base commit>`; when the task is done, append a **done-gate block**:
 
   ```
@@ -66,7 +66,7 @@ For each task in order:
 
 1. **Keep the orchestrator head clean.** For a **non-trivial** task, dispatch a **fresh implementer sub-agent** (sequential — wait for it to return before the next). Its brief must be self-contained: absolute paths to the task file and `spec.md`, `What to build`, `Acceptance criteria`, the task's `Seams:` line (and `Touchpoints:` if present) pasted in full, and "TDD at these seams — red before green; do not touch other tasks' files; read-only on the tracker". If the harness cannot spawn sub-agents, implement the task yourself — **sequentially**. Never dispatch two implementers on the same tree. For a **trivial** task, implement it inline in the main session — no sub-agent overhead.
 2. When the implementer returns (or you finish inline): run typecheck / relevant tests yourself and check the acceptance criteria against the code.
-3. Green → set `Status: done`, append the done-gate block, commit (per the user's commit rules), continue. **Do not pause between tasks** to ask "continue?" — the run was the go-ahead (unless review-pause was chosen in pre-flight).
+3. Green → set `Status: done`, append the done-gate block, **commit that task**, continue. **Never pause between tasks** to ask "continue?" — the run is the go-ahead; the only stop between tasks is a review pause the user requested in their command.
 4. Red or criteria not met → send the failing evidence back to the same implementer (its context is intact); if it cannot resolve, stop per §4. Never mark `done` on red.
 
 ### 4. Stop conditions (reactive, task-level)
@@ -123,7 +123,7 @@ Omit a sub-agent only when its inputs clearly do not exist (e.g. no `CONTEXT.md`
 
 Each scout prompt must include: absolute paths to the task file and `spec.md`, the task's `What to build` (or equivalent) and `Seams:` line pasted in full, and "read-only — do not modify the repo".
 
-After all scouts return: synthesize, then **compare against the spec's `## Testing Decisions`**. Matching seams → proceed, do **not** ask. Divergence (a spec seam is missing, wrong, or overlaps unlisted code) → raise only that divergence with the user. Then continue at step 5.
+After all scouts return: synthesize, then **compare against the spec's `## Testing Decisions`**. Matching seams → proceed. Divergence (a spec seam is missing, wrong, or overlaps unlisted code) → **stop** per §4 and report — never re-derive the seams yourself and never ask. Then continue at step 5.
 
 **Do not** dispatch implementation or fix sub-agents in parallel on the same working tree during build — that is out of scope for scout. For multi-task throughput, use **Parallel builds** (worktrees) above.
 
