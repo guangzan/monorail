@@ -1,5 +1,11 @@
 # monorail
 
+## 0.6.2
+
+### Patch Changes
+
+- [`4730656`](https://github.com/guangzan/monorail/commit/4730656cdbd8e815250d804b2dcc9a478415afd7) Thanks [@guangzan](https://github.com/guangzan)! - `/rail-build` never asks about run length or commit policy — defaults are a queue-clear serial run with **one commit per task**; user deviations ("review pause", "don't commit", narrower run) are honored from the command, never prompted. Seam/contradiction divergences now stop and report (§4) instead of raising a question.
+
 ## 0.6.1
 
 ### Patch Changes
