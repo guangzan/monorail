@@ -11,7 +11,7 @@ Scaffold per-repo configuration that rail engineering skills assume:
 - **Everything under `docs/monorail/`** — work tracker, glossary, ADRs, and convention files (no remote tracker; no scatter to repo root / `docs/agents/` / `docs/adr/`)
 - **Domain docs** — `docs/monorail/CONTEXT.md` + `docs/monorail/adr/`
 
-This is prompt-driven, not a deterministic script. Explore, present, confirm, then write.
+This is prompt-driven, not a deterministic script. Explore, present, then write — never pause to ask the user to confirm the plan.
 
 ## Process
 
@@ -24,25 +24,21 @@ Read what exists; do not assume:
 - Legacy scatter (migrate hint only, do not auto-move): repo-root `CONTEXT.md` / `CONTEXT-MAP.md`, `docs/adr/`, `docs/agents/`
 - Monorepo signals (`pnpm-workspace.yaml`, package `workspaces`, populated `packages/*`)
 
-### 2. Present and confirm
+### 2. Present
 
 Summarise present vs missing. Then:
 
-**Doc root** — state that rail keeps **all** docs under `docs/monorail/` only. Show templates at `templates/work-tracker.md` and `templates/domain.md` (relative to this skill). Confirm path wording only if the user wants a non-default root (default: `docs/monorail/`). If they insist on a remote tracker, refuse for rail skills and stop — rail v1 is local-only. If legacy paths exist, tell the user to move them under `docs/monorail/` manually (do not rewrite their content in this skill).
+**Doc root** — state that rail keeps **all** docs under `docs/monorail/` only. Show templates at `templates/work-tracker.md` and `templates/domain.md` (relative to this skill). Use the default root (`docs/monorail/`); adjust path wording only if the user explicitly asks for a non-default root. If they insist on a remote tracker, refuse for rail skills and stop — rail v1 is local-only. If legacy paths exist, tell the user to move them under `docs/monorail/` manually (do not rewrite their content in this skill).
 
 **Domain docs** — default single-context (`docs/monorail/CONTEXT.md` + `docs/monorail/adr/`). Offer multi-context only when exploration found monorepo signals (`docs/monorail/CONTEXT-MAP.md`; per-context paths still under `docs/monorail/`).
 
-### 3. Confirm draft
+### 3. Write
 
-Show drafts of:
+Write immediately after presenting — no confirmation, no waiting for edits. Show each draft as you go, then report what was written. The pieces to write:
 
 - `## Agent skills` block for `CLAUDE.md` or `AGENTS.md`
 - `docs/monorail/work-tracker.md` (from template, path adjusted if needed)
 - `docs/monorail/domain.md` (from template)
-
-Let the user edit before writing.
-
-### 4. Write
 
 **Pick file for Agent skills block:**
 
