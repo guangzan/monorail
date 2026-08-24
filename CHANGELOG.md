@@ -1,5 +1,11 @@
 # monorail
 
+## 0.6.1
+
+### Patch Changes
+
+- [`16eea4a`](https://github.com/guangzan/monorail/commit/16eea4ab079bc98208984433d85a650a66fcde47) Thanks [@guangzan](https://github.com/guangzan)! - `/rail-setup` writes immediately after presenting the plan — the confirm-the-draft gate is removed.
+
 ## 0.6.0
 
 ### Minor Changes
