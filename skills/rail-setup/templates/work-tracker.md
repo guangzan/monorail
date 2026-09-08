@@ -19,6 +19,7 @@ docs/monorail/
 ## Feature conventions
 
 - One feature/effort per directory: `docs/monorail/<feature-slug>/`
+- **Slug naming**: a user-named slug is used as-is (no prefix); an agent-invented slug is `YYYY-MM-DD-NN-<kebab>` (`NN` = the day's global sequence `01`, `02`, … — count today's existing date-prefixed effort dirs + 1). The date prefix sorts efforts chronologically and prevents collisions
 - Light-align output: `docs/monorail/<feature-slug>/align.md` — required before `/rail-spec` when there is no cleared map
 - Session pass (optional): `docs/monorail/<feature-slug>/pass-<date>.md` — from `/rail-pass`
 - Spec: `docs/monorail/<feature-slug>/spec.md`
