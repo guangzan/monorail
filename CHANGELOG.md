@@ -1,5 +1,13 @@
 # monorail
 
+## 0.7.0
+
+### Minor Changes
+
+- [`7d0d4c6`](https://github.com/guangzan/monorail/commit/7d0d4c655af8447d4a9394fecce3d6d893fc406e) Thanks [@guangzan](https://github.com/guangzan)! - feat(skills): agent-invented effort slugs now get a `YYYY-MM-DD-NN-` creation-time prefix (NN = the day's global sequence); user-named slugs stay as-is. `/rail-spec` matches by content name and picks the latest on ties.
+
+- [`4abc371`](https://github.com/guangzan/monorail/commit/4abc371352967844a2370acf5b8c3ffca2d40e65) Thanks [@guangzan](https://github.com/guangzan)! - `/rail-spec` no longer auto-continues into `/rail-slice`. After writing `spec.md` it stops and asks once — **continue** slicing in the same session, **revise** the spec, or **pause** (`spec.md` stays durable; `/rail-slice` resumes it later). The planning chain still auto-continues `align → spec`; only the `spec → slice` boundary is now a go/no-go.
+
 ## 0.6.2
 
 ### Patch Changes
