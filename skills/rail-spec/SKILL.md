@@ -1,6 +1,6 @@
 ---
 name: rail-spec
-description: Synthesize durable align/map sources (and current conversation) into docs/monorail/<feature>/spec.md, then auto-continue to rail-slice. Refuse empty context — do not invent a thin spec.
+description: Synthesize durable align/map sources (and current conversation) into docs/monorail/<feature>/spec.md, then stop and ask before continuing to rail-slice. Refuse empty context — do not invent a thin spec.
 disable-model-invocation: true
 ---
 
@@ -17,7 +17,7 @@ If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup
 Before reading or writing work files:
 
 - If the user named one, use it
-- Else list `docs/monorail/*/align.md`, `docs/monorail/*/map.md`, and `docs/monorail/*/spec.md` (skip reserved names: `adr`, `work-tracker.md`, `domain.md`, `CONTEXT.md`, `CONTEXT-MAP.md`); reuse the matching effort's directory slug when unambiguous; if several, ask
+- Else list `docs/monorail/*/align.md`, `docs/monorail/*/map.md`, and `docs/monorail/*/spec.md` (skip reserved names: `adr`, `work-tracker.md`, `domain.md`, `CONTEXT.md`, `CONTEXT-MAP.md`); match by **content name** (strip the `YYYY-MM-DD-NN-` prefix from agent-invented slugs); if several match, use the latest (date + sequence sorts chronologically)
 - If `docs/monorail/<slug>/align.md` or `map.md` already exists for this effort, **do not** invent a different slug for the spec
 
 ### 2. Adequacy gate (fail closed)
@@ -56,13 +56,19 @@ Before writing, run a **read-only grounding pass** so the spec's seams are ancho
 
 If durable sources exist but a **few** gaps block a coherent spec, ask only those questions — one at a time. If gaps are large or re-open the decision tree, stop and suggest `/rail-align` instead of pushing a hollow spec.
 
-### 6. Write and continue
+### 6. Write, then stop for the slice go/no-go
 
 Write `docs/monorail/<feature-slug>/spec.md` using the template below.
 
-**Continue the planning chain** for this same `<slug>`: read and follow `/rail-slice` in this same session (writes `docs/monorail/<slug>/tasks/NN-*.md`). Do **not** stop and ask the user to type `/rail-slice`. Do **not** substitute foreign-pack skills — e.g. `/to-tickets`, `/to-issues`, `/to-prd`, `/to-spec` — even if those are installed. Do **not** open GitHub/GitLab Issues for rail work. Do **not** auto-continue into `/rail-build`.
+**Stop and ask once before slicing.** After writing, present a short digest of the spec (Problem / Solution / Stories overview, the single seam decision from `## Testing Decisions`, Out of scope, and the `spec.md` path), then ask whether to continue into `/rail-slice` in this same session. Wait for the answer.
 
-**Exceptions (stop instead):** user asked to stop after spec; context near limits → `/rail-pass` (do not write a degraded spec, and do not continue to slice).
+- **Continue** → read and follow `/rail-slice` for this same `<slug>` in this same session (writes `docs/monorail/<slug>/tasks/NN-*.md`)
+- **Revise the spec** → stay on the spec; iterate `spec.md` in place from the feedback (if a change contradicts a settled `align.md` / map decision, update that durable source too), then return to this go/no-go
+- **Pause** → stop here. `spec.md` is durable; a later `/rail-slice` (or the next session) resumes from it
+
+Do **not** substitute foreign-pack skills — e.g. `/to-tickets`, `/to-issues`, `/to-prd`, `/to-spec` — even if those are installed. Do **not** open GitHub/GitLab Issues for rail work. Do **not** auto-continue into `/rail-build`.
+
+**Stop instead when:** context is near limits → `/rail-pass` (do not write a degraded spec, and do not continue to slice).
 
 ## Spec template
 

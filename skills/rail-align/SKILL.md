@@ -1,6 +1,6 @@
 ---
 name: rail-align
-description: Align on a plan or design — light grilling with domain docs by default; map mode for foggy multi-session efforts. Light mode writes docs/monorail/<slug>/align.md then auto-continues the planning chain (spec → slice).
+description: Align on a plan or design — light grilling with domain docs by default; map mode for foggy multi-session efforts. Light mode writes docs/monorail/<slug>/align.md then auto-continues the planning chain (spec, which stops for your go/no-go before slice).
 disable-model-invocation: true
 ---
 
@@ -29,11 +29,11 @@ If map mode's first breadth pass finds **no fog**, do not create a map — stay 
    - When a hard-to-reverse decision crystallises, write an ADR under `docs/monorail/adr/`
    - Create `docs/monorail/CONTEXT.md` / `docs/monorail/adr/` lazily when first needed
 3. When the decision tree is resolved and the user confirms shared understanding, **persist before continuing**:
-   - **Pick a new feature slug** (`docs/monorail/<slug>/`) — agent chooses; **never ask** the user; **never reuse** an existing `docs/monorail/<slug>/` work directory (related prior efforts stay separate; link them from Domain pointers if useful). If the user already named a free slug, use it; if that path exists or the name is reserved, invent a distinct unused kebab-case slug (suffix if needed). Reserved names: `CONTEXT.md`, `CONTEXT-MAP.md`, `adr`, `work-tracker.md`, `domain.md`
+   - **Pick a new feature slug** (`docs/monorail/<slug>/`) — agent chooses; **never ask** the user; **never reuse** an existing `docs/monorail/<slug>/` work directory (related prior efforts stay separate; link them from Domain pointers if useful). If the user already named a free slug, use it as-is (no prefix). Otherwise invent a distinct unused slug: `YYYY-MM-DD-NN-<kebab>` where `NN` is the day's global sequence (`01`, `02`, … — count today's existing date-prefixed effort dirs + 1). Reserved names: `CONTEXT.md`, `CONTEXT-MAP.md`, `adr`, `work-tracker.md`, `domain.md`
    - **Do not** interview for slug (no A/B/C, no “new vs continue”) — slug is path bookkeeping, not a decision-tree branch
    - Write `docs/monorail/<slug>/align.md` using the template below (create the directory)
    - Domain docs alone are **not** enough — `/rail-spec` requires this file (or a cleared map)
-4. **Continue the planning chain** for this same `<slug>`: read and follow `/rail-spec` in this same session (then that skill continues to `/rail-slice`). Do **not** stop and ask the user to type `/rail-spec`. Do **not** substitute `/to-spec` or other foreign-pack equivalents.
+4. **Continue the planning chain** for this same `<slug>`: read and follow `/rail-spec` in this same session (it writes `spec.md`, then stops for your go/no-go before `/rail-slice`). Do **not** stop and ask the user to type `/rail-spec`. Do **not** substitute `/to-spec` or other foreign-pack equivalents.
    - **Exceptions (stop instead):** user asked to stop after align; context near limits → `/rail-pass`
    - **Budget check (before auto-continuing):** the light grilling may have already spent a large share of this session's context. If so, stop here — `align.md` is durable, and `/rail-spec` resumes it fresh next session (its code-grounding pass and single seam confirmation deserve a clean window). When in doubt prefer stopping with `align.md` written. This is a self-determined stop, not a new question for the user.
 

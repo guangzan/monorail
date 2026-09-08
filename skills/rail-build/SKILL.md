@@ -131,4 +131,4 @@ After all scouts return: synthesize, then **compare against the spec's `## Testi
 
 - Hard bug / unclear failure → suggest `/rail-debug` (fresh session only if the run's context is already heavy)
 - Context full / near degraded → `/rail-pass`; do not push on — the `## Comments` run lines resume the run
-- Spec/task wrong or incomplete (missing requirement, bad slice) → **stop**; do not keep coding. Suggest `/rail-align` (update `align.md` or map); when alignment is durable again the **planning chain** auto-continues (`/rail-spec` → `/rail-slice`). Leave the task `Status: claimed` or revert to `open` with a `## Comments` note; do not mark `done`
+- Spec/task wrong or incomplete (missing requirement, bad slice) → **stop**; do not keep coding. Suggest `/rail-align` (update `align.md` or map); when alignment is durable again the **planning chain** resumes (`/rail-spec`, which stops for your go/no-go before `/rail-slice`). Leave the task `Status: claimed` or revert to `open` with a `## Comments` note; do not mark `done`

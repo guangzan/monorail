@@ -18,11 +18,11 @@ A **flow** is a path through skills. Most work follows the **main chain**.
 
 ### Planning chain (auto-continue)
 
-**align → spec → slice** is one planning chain. When a stage finishes successfully in this session, **continue the next stage in the same session** by reading and following that skill's `SKILL.md` — do **not** stop and ask the user to type the next `/rail-*`.
+**align → spec → slice** is one planning chain. When a stage finishes successfully in this session, **continue the next stage in the same session** by reading and following that skill's `SKILL.md` — do **not** stop and ask the user to type the next `/rail-*`. One exception: **spec → slice is gated** — after writing `spec.md`, `/rail-spec` stops and asks once (continue slicing now / revise the spec / pause) and never slices without that confirmation.
 
-- Light align writes `align.md` → continue `/rail-spec` → continue `/rail-slice`
-- Cleared map (no open tickets / fog) → continue `/rail-spec` → continue `/rail-slice`
-- Standalone `/rail-spec` auto-continues to `/rail-slice`; `/rail-slice` ends the planning chain (suggest `/rail-build` only)
+- Light align writes `align.md` → continue `/rail-spec` → gate → continue `/rail-slice` (on confirm)
+- Cleared map (no open tickets / fog) → continue `/rail-spec` → gate → continue `/rail-slice` (on confirm)
+- Standalone `/rail-spec` writes `spec.md` → gate; `/rail-slice` ends the planning chain (suggest `/rail-build` only)
 
 **Do not auto-continue into `/rail-build`** — build stays **user-triggered**: the planning chain ends at slice so you can review the task list before implementation starts. Once a build starts, it runs tasks **serially in the same session** — finishing one task continues to the next frontier task with **no fresh session and no context-clearing between tasks** (non-trivial tasks are isolated in fresh implementer sub-agents). Builds **ask nothing**: defaults are run to queue-clear with **one commit per task**; the user states any deviation (review pause, no-commit, narrower run) in their command. If the run's context degrades, `/rail-pass` or a fresh sub-agent resumes it. To run several builds at once, set up **one git worktree per task** first — more sessions on the same cwd are not parallel-safe.
 

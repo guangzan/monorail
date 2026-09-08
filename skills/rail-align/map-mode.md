@@ -38,7 +38,7 @@ Light mode does not create these typed tickets; escalate to map when a chain of 
 
 ## Charting session
 
-1. **Open a new effort slug** (`docs/monorail/<effort>/`) — agent chooses; **never ask**; **never reuse** an existing work directory (same rules as light-mode persist). Later `/rail-spec` and `/rail-slice` **must** use this same slug
+1. **Open a new effort slug** (`docs/monorail/<effort>/`) — agent chooses; **never ask**; **never reuse** an existing work directory (same rules as light-mode persist: user-named slug used as-is; agent-invented slug is `YYYY-MM-DD-NN-<kebab>` with `NN` the day's global sequence). Later `/rail-spec` and `/rail-slice` **must** use this same slug
 2. Name Destination via grilling (and update `docs/monorail/CONTEXT.md` / ADRs when terms crystallise)
 3. Breadth-first grill for open questions; assign each creatable ticket a `Type`
 4. If **no fog** — do not create a map; return to light mode
@@ -77,7 +77,7 @@ If the real blocker is a fact gap: retarget/split as `research`; do not use code
 
 ## Clear map → spec
 
-When no open tickets remain and Not yet specified is empty (or only out-of-scope remains), the map is clear. **Continue the planning chain** for this same `<effort>` slug: read and follow `/rail-spec` in this same session (it will continue to `/rail-slice`). Do **not** stop and ask the user to type `/rail-spec`. Spec may cite `notes/` and prototype verdicts; those artifacts do **not** auto-become `tasks/`.
+When no open tickets remain and Not yet specified is empty (or only out-of-scope remains), the map is clear. **Continue the planning chain** for this same `<effort>` slug: read and follow `/rail-spec` in this same session (it writes `spec.md`, then stops for your go/no-go before `/rail-slice`). Do **not** stop and ask the user to type `/rail-spec`. Spec may cite `notes/` and prototype verdicts; those artifacts do **not** auto-become `tasks/`.
 
 **Exceptions (stop instead):** user asked to stop after the map; context near limits → `/rail-pass`.
 
