@@ -14,7 +14,7 @@ A **flow** is a path through skills. Most work follows the **main chain**.
 2. **`/rail-align`** — light grilling → writes `align.md`; map mode if foggy/multi-session
 3. **`/rail-spec`** — write `docs/monorail/<feature>/spec.md` from `align.md` and/or a cleared map (refuses empty context)
 4. **`/rail-slice`** — write `tasks/NN-*.md` with blockers
-5. **`/rail-build`** — user-triggered; runs frontier tasks **serially in one session** (fresh implementer sub-agent per non-trivial task, trivial tasks inline); drives `/rail-tdd`, then marks done. Concurrent builds require **separate git worktrees** (see `rail-build`)
+5. **`/rail-build`** — user-triggered; runs frontier tasks **serially in one session** (implemented inline in the main session by default; a fresh implementer sub-agent only on a hand-off trigger — unfamiliar/wide territory or degraded context); drives `/rail-tdd`, then marks done. Concurrent builds require **separate git worktrees** (see `rail-build`)
 
 ### Planning chain (auto-continue)
 
@@ -24,7 +24,7 @@ A **flow** is a path through skills. Most work follows the **main chain**.
 - Cleared map (no open tickets / fog) → continue `/rail-spec` → gate → continue `/rail-slice` (on confirm)
 - Standalone `/rail-spec` writes `spec.md` → gate; `/rail-slice` ends the planning chain (suggest `/rail-build` only)
 
-**Do not auto-continue into `/rail-build`** — build stays **user-triggered**: the planning chain ends at slice so you can review the task list before implementation starts. Once a build starts, it runs tasks **serially in the same session** — finishing one task continues to the next frontier task with **no fresh session and no context-clearing between tasks** (non-trivial tasks are isolated in fresh implementer sub-agents). Builds **ask nothing**: defaults are run to queue-clear with **one commit per task**; the user states any deviation (review pause, no-commit, narrower run) in their command. If the run's context degrades, `/rail-pass` or a fresh sub-agent resumes it. To run several builds at once, set up **one git worktree per task** first — more sessions on the same cwd are not parallel-safe.
+**Do not auto-continue into `/rail-build`** — build stays **user-triggered**: the planning chain ends at slice so you can review the task list before implementation starts. Once a build starts, it runs tasks **serially in the same session** — finishing one task continues to the next frontier task with **no fresh session and no context-clearing between tasks** (tasks run inline in the main session by default; a fresh implementer sub-agent takes over only when territory is unfamiliar/wide or the run's context degrades). Builds **ask nothing**: defaults are run to queue-clear with **one commit per task**; the user states any deviation (review pause, no-commit, narrower run) in their command. If the run's context degrades, `/rail-pass` or a fresh sub-agent resumes it. To run several builds at once, set up **one git worktree per task** first — more sessions on the same cwd are not parallel-safe.
 
 **Stop auto-continue when:** the user asked to stop after this stage; context is near limits (use `/rail-pass`); or an adequacy / map / fail-closed gate says stop.
 

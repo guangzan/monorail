@@ -21,7 +21,7 @@ npx skills add guangzan/monorail
              └─ map   ──→ decisions* ═╩══→ /rail-spec ══→ spec.md ═✳→ /rail-slice ──→ /rail-build*
 ```
 
-`══→` 表示同会话自动续跑（规划链）。`✳` 表示**去留确认（go/no-go）**：写完 `spec.md` 后 `/rail-spec` 停下问一次——**继续**同会话切片、**改** spec、或**先停**（`spec.md` 已落盘，之后手动跑 `/rail-slice` 即可）。`*` 表示下一步**用户手动触发**——`/rail-build` 在同一会话里**串行跑** frontier tasks（非平凡 task 派发全新 implementer 子代理，无需新会话）。并发多张时必须 **一 task 一 git worktree**（禁止同一 cwd 并行）。没有 `align.md` 或未清完 map 时，`/rail-spec` 会拒绝写入。
+`══→` 表示同会话自动续跑（规划链）。`✳` 表示**去留确认（go/no-go）**：写完 `spec.md` 后 `/rail-spec` 停下问一次——**继续**同会话切片、**改** spec、或**先停**（`spec.md` 已落盘，之后手动跑 `/rail-slice` 即可）。`*` 表示下一步**用户手动触发**——`/rail-build` 在同一会话里**串行跑** frontier tasks（默认在主会话内联实现，仅在地盘陌生/宽或上下文退化时才派发全新 implementer 子代理；无需新会话）。并发多张时必须 **一 task 一 git worktree**（禁止同一 cwd 并行）。没有 `align.md` 或未清完 map 时，`/rail-spec` 会拒绝写入。
 
 ## Skills
 

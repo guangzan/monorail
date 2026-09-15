@@ -21,7 +21,7 @@ In each business repo, run `/rail-setup` once before other rail engineering skil
              └─ map   ──→ decisions* ═╩══→ /rail-spec ══→ spec.md ═✳→ /rail-slice ──→ /rail-build*
 ```
 
-`══→` auto-continues in the same session (planning chain). `✳` is a **go/no-go**: after writing `spec.md`, `/rail-spec` stops and asks once — **continue** slicing in the same session, **revise** the spec, or **pause** (`spec.md` stays durable; run `/rail-slice` later). `*` marks the next step as **user-triggered**: `/rail-build` runs frontier tasks **serially in one session** (fresh implementer sub-agent per non-trivial task; no fresh session required). Concurrent builds require **one git worktree per task** (same cwd is forbidden). `/rail-spec` refuses to write without `align.md` or a cleared map.
+`══→` auto-continues in the same session (planning chain). `✳` is a **go/no-go**: after writing `spec.md`, `/rail-spec` stops and asks once — **continue** slicing in the same session, **revise** the spec, or **pause** (`spec.md` stays durable; run `/rail-slice` later). `*` marks the next step as **user-triggered**: `/rail-build` runs frontier tasks **serially in one session** (implemented inline in the main session by default; a fresh implementer sub-agent only for unfamiliar/wide territory or a degraded context; no fresh session required). Concurrent builds require **one git worktree per task** (same cwd is forbidden). `/rail-spec` refuses to write without `align.md` or a cleared map.
 
 ## Skills
 
