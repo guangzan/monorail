@@ -1,5 +1,0 @@
----
-'monorail': minor
----
-
-`/rail-build` and `/rail-spec` go **inline-first**: implementation and the spec grounding sweep run in the main session by default, so a small task pays no sub-agent spawn overhead. A fresh implementer sub-agent is dispatched only on a hand-off trigger — the task's territory is genuinely unfamiliar or wide, or the orchestrator's context has degraded (the §4 context stop). `/rail-spec`'s read-only grounding sweep likewise offloads to up to three parallel sub-agents only when the territory justifies the spawn. This extends the existing on-demand exploration principle; the fresh-implementer protection for long runs is preserved as the escape hatch, not the default. `rail-align` and `rail-slice` are unchanged (they never spawned sub-agents); stale build-behavior descriptions in `rail-slice`'s completion and the docs are synced to the "asks nothing" default.
