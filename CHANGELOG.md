@@ -1,5 +1,11 @@
 # monorail
 
+## 0.9.1
+
+### Patch Changes
+
+- [`1ced442`](https://github.com/guangzan/monorail/commit/1ced4423d5c7b411b7c20c2972ef9c42fa7dd06e) Thanks [@guangzan](https://github.com/guangzan)! - Rail skills confirm rail docs on disk with the shell before concluding anything is missing. Search tools (Glob/Grep) skip gitignored paths, so a repo that gitignores `docs/` returned empty results for `docs/monorail/` and looked unconfigured — wrongly sending users to `/rail-setup` when the files were right there. Every presence check and every `docs/monorail/` listing now goes through the shell (`ls` / `test -f`, or reading the path directly): the four `/rail-setup` guards, effort-slug numbering and reuse checks, the align/map/spec listing in `/rail-spec`, spec and task discovery in `/rail-slice` and `/rail-build`, `CONTEXT.md` / ADR reads in `/rail-debug` and `/rail-tdd`, spec location in `/rail-review`, and the active-effort check in `/rail-pass`. `/rail-setup` also stops overwriting existing docs — `work-tracker.md`, `domain.md`, and an existing `## Agent skills` block are left untouched and reported as already present — and `work-tracker.md` carries the shell-first rule into every repo it scaffolds.
+
 ## 0.9.0
 
 ### Minor Changes
