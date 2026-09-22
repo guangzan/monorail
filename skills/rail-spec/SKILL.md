@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Turn **durable alignment** into a spec. Prefer synthesis over interview — but **never** invent a spec from thin air.
 
-If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup` and stop.
+Confirm with the shell before concluding it is missing (`ls docs/monorail/work-tracker.md`, or read the path directly) — search tools skip gitignored paths, so an empty Glob/Grep result is **not** evidence of absence. If it is missing on disk, tell the user to run `/rail-setup` and stop.
 
 ## Process
 
@@ -17,7 +17,7 @@ If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup
 Before reading or writing work files:
 
 - If the user named one, use it
-- Else list `docs/monorail/*/align.md`, `docs/monorail/*/map.md`, and `docs/monorail/*/spec.md` (skip reserved names: `adr`, `work-tracker.md`, `domain.md`, `CONTEXT.md`, `CONTEXT-MAP.md`); match by **content name** (strip the `YYYY-MM-DD-NN-` prefix from agent-invented slugs); if several match, use the latest (date + sequence sorts chronologically)
+- Else list them with the shell (`ls docs/monorail/`, then each effort directory for `align.md` / `map.md` / `spec.md`) — search tools skip gitignored paths, so never build this list from Glob/Grep results (skip reserved names: `adr`, `work-tracker.md`, `domain.md`, `CONTEXT.md`, `CONTEXT-MAP.md`); match by **content name** (strip the `YYYY-MM-DD-NN-` prefix from agent-invented slugs); if several match, use the latest (date + sequence sorts chronologically)
 - If `docs/monorail/<slug>/align.md` or `map.md` already exists for this effort, **do not** invent a different slug for the spec
 
 ### 2. Adequacy gate (fail closed)

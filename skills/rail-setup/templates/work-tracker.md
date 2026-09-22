@@ -16,6 +16,10 @@ docs/monorail/
 
 **Reserved names** (not feature slugs): `CONTEXT.md`, `CONTEXT-MAP.md`, `adr`, `work-tracker.md`, `domain.md`.
 
+## Reading and listing
+
+Decide whether a rail doc exists — and list `docs/monorail/` contents — with the shell (`ls` / `test -f`, or reading the path directly). Search tools skip gitignored paths, so an empty Glob/Grep result is **not** evidence a file is missing.
+
 ## Feature conventions
 
 - One feature/effort per directory: `docs/monorail/<feature-slug>/`

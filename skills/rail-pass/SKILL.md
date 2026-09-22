@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Rail Pass
 
-Write a pass document so a fresh agent can continue. Save under the OS temp directory **or** `docs/monorail/<feature>/pass-<date>.md` if a feature slug is active and the user prefers repo-local — ask once if unclear.
+Write a pass document so a fresh agent can continue. Save under the OS temp directory **or** `docs/monorail/<feature>/pass-<date>.md` if a feature slug is active and the user prefers repo-local — ask once if unclear. Find active efforts with the shell (`ls docs/monorail/`); search tools skip gitignored paths.
 
 ## Include
 

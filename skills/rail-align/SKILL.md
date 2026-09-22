@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Sharpen an idea before spec/build. Two modes — light by default when the ask is clear; ask about map only when fog warrants it.
 
-If `docs/monorail/work-tracker.md` or `docs/monorail/domain.md` is missing, tell the user to run `/rail-setup` first and stop.
+Confirm with the shell before concluding either file is missing (`ls docs/monorail/work-tracker.md docs/monorail/domain.md`, or read the paths directly) — search tools skip gitignored paths, so an empty Glob/Grep result is **not** evidence of absence. If a file is missing on disk, tell the user to run `/rail-setup` first and stop.
 
 ## Opening gate
 
@@ -27,9 +27,9 @@ If map mode's first breadth pass finds **no fog**, do not create a map — stay 
    - Challenge terms against `docs/monorail/CONTEXT.md`
    - Sharpen fuzzy language; propose canonical terms
    - When a hard-to-reverse decision crystallises, write an ADR under `docs/monorail/adr/`
-   - Create `docs/monorail/CONTEXT.md` / `docs/monorail/adr/` lazily when first needed
+   - Create `docs/monorail/CONTEXT.md` / `docs/monorail/adr/` lazily when first needed — check with the shell first (`ls`); search tools skip gitignored paths, and an existing glossary or ADR must never be replaced
 3. When the decision tree is resolved and the user confirms shared understanding, **persist before continuing**:
-   - **Pick a new feature slug** (`docs/monorail/<slug>/`) — agent chooses; **never ask** the user; **never reuse** an existing `docs/monorail/<slug>/` work directory (related prior efforts stay separate; link them from Domain pointers if useful). If the user already named a free slug, use it as-is (no prefix). Otherwise invent a distinct unused slug: `YYYY-MM-DD-NN-<kebab>` where `NN` is the day's global sequence (`01`, `02`, … — count today's existing date-prefixed effort dirs + 1). Reserved names: `CONTEXT.md`, `CONTEXT-MAP.md`, `adr`, `work-tracker.md`, `domain.md`
+   - **Pick a new feature slug** (`docs/monorail/<slug>/`) — agent chooses; **never ask** the user; **never reuse** an existing `docs/monorail/<slug>/` work directory (related prior efforts stay separate; link them from Domain pointers if useful). If the user already named a free slug, use it as-is (no prefix). Otherwise invent a distinct unused slug: `YYYY-MM-DD-NN-<kebab>` where `NN` is the day's global sequence (`01`, `02`, … — count today's existing date-prefixed effort dirs + 1 with the shell, `ls docs/monorail/`; search tools skip gitignored paths and can miss effort dirs, so never take the sequence or the "unused" check from Glob/Grep). Reserved names: `CONTEXT.md`, `CONTEXT-MAP.md`, `adr`, `work-tracker.md`, `domain.md`
    - **Do not** interview for slug (no A/B/C, no “new vs continue”) — slug is path bookkeeping, not a decision-tree branch
    - Write `docs/monorail/<slug>/align.md` using the template below (create the directory)
    - Domain docs alone are **not** enough — `/rail-spec` requires this file (or a cleared map)

@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Implement tasks from `docs/monorail/<feature>/tasks/`. **One session, serial run**: after a task goes green, continue to the next frontier task in the **same** session — no fresh session, no check-ins or questions between tasks. Defaults: run to queue-clear, **one commit per task** on the current branch. The skill never asks about run length or commit policy — the user states any deviation (review pause, no-commit, narrower run) in their command and the agent honors it.
 
-If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup` and stop.
+Confirm with the shell before concluding it is missing (`ls docs/monorail/work-tracker.md`, or read the path directly) — search tools skip gitignored paths, so an empty Glob/Grep result is **not** evidence of absence. If it is missing on disk, tell the user to run `/rail-setup` and stop.
 
 ## Process
 
@@ -22,7 +22,7 @@ If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup
 8. Commit **once per task** on the current branch (default policy — the task's single commit carries its claim and status changes); skip committing only when the user opted out for this run.
 9. **Continue or stop.** Another frontier task exists and the user's go-ahead covers it → continue serially (see **Serial run**). Otherwise stop and report where you left off. When the run ends with no open/unblocked tasks remaining, cross-check that every numbered `## User Stories` entry in `spec.md` is covered by a `done` task (or explicitly out of scope) — report any uncovered story instead of claiming the queue is clear — then say the feature's implementation queue is clear (human decides merge/ship; a new feature starts at `/rail-align`).
 
-**Frontier (implementation):** `Status: open`, every listed blocker is `Status: done`, not claimed; lowest `NN` wins (see `docs/monorail/work-tracker.md`).
+**Frontier (implementation):** `Status: open`, every listed blocker is `Status: done`, not claimed; lowest `NN` wins (see `docs/monorail/work-tracker.md`). Read task files by path, and list `tasks/` with the shell (`ls docs/monorail/<feature>/tasks/`) — search tools skip gitignored paths, so an empty Glob/Grep result is **not** evidence the queue is empty.
 
 Never run two tasks in the same working tree **concurrently** — serial runs are strictly sequential. For actual parallelism use worktrees (**Parallel builds** below).
 

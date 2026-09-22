@@ -20,7 +20,7 @@ This is prompt-driven, not a deterministic script. Explore, present, then write 
 Read what exists; do not assume:
 
 - `AGENTS.md` / `CLAUDE.md` — either present? Already has `## Agent skills`?
-- `docs/monorail/` — already in use? `work-tracker.md` / `domain.md` / `CONTEXT.md` / `adr/`?
+- `docs/monorail/` — already in use? Check with the shell (`ls -R docs/monorail`, or `ls` / `test -f` per file): `work-tracker.md` / `domain.md` / `CONTEXT.md` / `adr/`. Search tools skip gitignored paths — an empty Glob/Grep result is **not** evidence the directory is unused
 - Legacy scatter (migrate hint only, do not auto-move): repo-root `CONTEXT.md` / `CONTEXT-MAP.md`, `docs/adr/`, `docs/agents/`
 - Monorepo signals (`pnpm-workspace.yaml`, package `workspaces`, populated `packages/*`)
 
@@ -39,6 +39,8 @@ Write immediately after presenting — no confirmation, no waiting for edits. Sh
 - `## Agent skills` block for `CLAUDE.md` or `AGENTS.md`
 - `docs/monorail/work-tracker.md` (from template, path adjusted if needed)
 - `docs/monorail/domain.md` (from template)
+
+**Skip what already exists:** if `docs/monorail/work-tracker.md` / `docs/monorail/domain.md` — or the `## Agent skills` block — is already there (confirmed with the shell), leave it untouched, report it as already present, and write only the missing pieces. Never overwrite an existing tracker or domain doc.
 
 **Pick file for Agent skills block:**
 

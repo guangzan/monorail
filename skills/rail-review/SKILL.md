@@ -29,6 +29,8 @@ Order:
 3. Ask the user where the spec is
 4. If none, Spec axis reports "no spec available"
 
+Check each candidate path on disk with the shell (`ls`, or read it) before falling through to the next — search tools skip gitignored paths, so an empty Glob/Grep result is **not** evidence the spec is absent.
+
 Never fetch GitHub/GitLab issues for spec source — local files only.
 
 ### 3. Identify the standards sources

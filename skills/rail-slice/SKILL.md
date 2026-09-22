@@ -8,17 +8,17 @@ disable-model-invocation: true
 
 Break an existing **spec** into **implementation** tasks — vertical tracer bullets with blocking edges. Local files only.
 
-If `docs/monorail/work-tracker.md` is missing, tell the user to run `/rail-setup` and stop.
+Confirm with the shell before concluding it is missing (`ls docs/monorail/work-tracker.md`, or read the path directly) — search tools skip gitignored paths, so an empty Glob/Grep result is **not** evidence of absence. If it is missing on disk, tell the user to run `/rail-setup` and stop.
 
 ## Process
 
 ### 1. Gather context
 
-Require an existing `docs/monorail/<feature-slug>/spec.md`. If missing, stop and suggest `/rail-spec` — do not slice from conversation alone.
+Require an existing `docs/monorail/<feature-slug>/spec.md`. Confirm it with the shell (`ls <path>`, or read it) before concluding it is missing — search tools skip gitignored paths, so an empty Glob/Grep result is **not** evidence of absence. If it is missing on disk, stop and suggest `/rail-spec` — do not slice from conversation alone.
 
 If `spec.md` exists but there is neither `align.md` nor a `map.md` for the same slug, warn that the spec may be unanchored and ask whether to proceed or return to `/rail-align` — do not silently treat a hollow chain as fine.
 
-Derive `<feature-slug>` from the spec path (or from the sole matching `docs/monorail/*/spec.md` if unambiguous). Do not invent a parallel slug. Read the spec fully; use conversation only to enrich tasks.
+Derive `<feature-slug>` from the spec path (or, when the shell listing of `docs/monorail/` shows exactly one effort holding a `spec.md`, from that). Do not invent a parallel slug. Read the spec fully; use conversation only to enrich tasks.
 
 ### 2. Explore (optional)
 
