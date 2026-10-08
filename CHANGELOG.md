@@ -1,5 +1,11 @@
 # monorail
 
+## 0.9.2
+
+### Patch Changes
+
+- `/rail-grill` now poses every question through a hard template — a `**问题：**` line, a separate `**推荐：X**` line whose `X` must be one of the listed options, and options prefixed `- **A.** `, `- **B.** `, and so on. Option length is unconstrained. `/rail-align`'s light-mode interview points at this same format rather than restating it, so the two cannot drift apart.
+
 ## 0.9.1
 
 ### Patch Changes

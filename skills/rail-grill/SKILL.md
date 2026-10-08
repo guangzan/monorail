@@ -16,6 +16,28 @@ Interview the user relentlessly about every aspect of the plan until shared unde
 - Decisions belong to the user — put each one to them
 - Do **not** write any `docs/monorail/` files (including `CONTEXT.md` / ADRs) — no codebase / intentionally stateless
 - Do **not** implement code
+- Every question uses the **Question format** below — without exception
+
+## Question format
+
+A hard template. Every question must have exactly this structure:
+
+```
+**问题：** <question text>
+
+**推荐：X**
+
+- **A.** <conclusion>.<one line of reason>
+- **B.** …
+```
+
+Constraints:
+
+- The `**问题：**` line carries the question; the `**推荐：X**` line is separate and follows it
+- `X` must be one of the listed options — never an unlisted alternative, never "none of the above"
+- Options are prefixed `- **A.** `, `- **B.** `, and so on
+- Option length is unconstrained — expand as the problem warrants
+- No other phrasing of a question is permitted
 
 ## Completion
 
