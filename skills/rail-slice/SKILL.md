@@ -64,6 +64,34 @@ Each task file must include:
 
 ### Completion
 
-Files written. In the completion message, list what was published (titles + blockers) so the user can still object next turn. **Stop here** — the planning chain ends at slice; do **not** auto-continue into `/rail-build` (you can review the task list first). Tell the user the next step is **`/rail-build`** — user-triggered, and it runs tasks **serially in the same session** (no fresh session; tasks are implemented inline in the main session by default, handed off to a fresh implementer sub-agent only on a hand-off trigger — unfamiliar/wide territory or degraded context; build asks nothing — queue-clear with one commit per task is the default, deviations come from the user's command). For true concurrency follow `/rail-build` **Parallel builds** (one git worktree per task). Do **not** suggest `/implement`, `/triage`, or other foreign-pack equivalents.
+Files written. Emit the completion message with this **hard template** — field names and order are fixed; omit optional sections only when their condition is false. Do **not** auto-continue into `/rail-build`. Do **not** suggest `/implement`, `/triage`, or other foreign-pack equivalents.
+
+```
+**描述**
+<1–2 sentence effort summary, ~30–80 Chinese characters, compressed from the spec opening / Problem→Solution>
+
+**已发布**
+<feature-slug>
+- docs/monorail/<feature-slug>/align.md
+- docs/monorail/<feature-slug>/spec.md
+- docs/monorail/<feature-slug>/tasks/<NN>-<task-slug>.md
+  - Title: <task title>
+  - Status: open
+  - Blocked by: None | NN, NN
+
+**警告**
+- <uncovered User Story>   # only when the story-coverage check found gaps
+
+下一步：需要你手动触发 `/rail-build`。
+```
+
+Rules for filling it:
+
+- `**描述**` — compress the effort into 1–2 sentences (~30–80 Chinese characters) from the spec opening / Problem→Solution; do not paste the whole Problem section
+- `**已发布**` — list the whole effort tree: `align.md` only if it exists on disk, then `spec.md`, then every `tasks/NN-*.md` just written
+- `align.md` / `spec.md` stay flat path bullets (no nested metadata)
+- each task path expands exactly three nested keys, in order: `Title:`, `Status:`, `Blocked by:`
+- `**警告**` appears only when at least one numbered User Story is uncovered; otherwise omit the whole section
+- the final line is exactly `下一步：需要你手动触发 `/rail-build`。` — no serial/worktree/foreign-pack digressions here
 
 Near context limits: stop and suggest `/rail-pass` instead of publishing a degraded slice set.

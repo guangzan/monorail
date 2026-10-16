@@ -1,5 +1,11 @@
 # monorail
 
+## 0.9.3
+
+### Patch Changes
+
+- `/rail-slice` completion is now a hard template: `**描述**`, `**已发布**` (whole effort tree; each task expands `Title` / `Status` / `Blocked by`), optional `**警告**` for uncovered User Stories, and a one-line manual `/rail-build` nudge. Drops the long serial/worktree/foreign-pack digression from the completion message.
+
 ## 0.9.2
 
 ### Patch Changes
