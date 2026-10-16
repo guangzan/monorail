@@ -1,6 +1,6 @@
 ---
 name: rail-slice
-description: Break an existing docs/monorail/<feature>/spec.md into tracer-bullet tasks under tasks/, each with Blocked by edges. Ends the planning chain — next step is user-triggered rail-build (same-session serial run).
+description: Break an existing docs/monorail/<feature>/spec.md into tracer-bullet tasks under tasks/, each with Blocked by edges. Ends the planning chain — next step is user-triggered `/rail-build <feature-slug>` (same-session serial default; open a fresh session when context is heavy).
 disable-model-invocation: true
 ---
 
@@ -72,9 +72,9 @@ Files written. Emit the completion message with this **hard template** — field
 
 **已发布**
 <feature-slug>
-- docs/monorail/<feature-slug>/align.md
-- docs/monorail/<feature-slug>/spec.md
-- docs/monorail/<feature-slug>/tasks/<NN>-<task-slug>.md
+- [align.md](docs/monorail/<feature-slug>/align.md)
+- [spec.md](docs/monorail/<feature-slug>/spec.md)
+- [tasks/<NN>-<task-slug>.md](docs/monorail/<feature-slug>/tasks/<NN>-<task-slug>.md)
   - Title: <task title>
   - Status: open
   - Blocked by: None | NN, NN
@@ -82,16 +82,18 @@ Files written. Emit the completion message with this **hard template** — field
 **警告**
 - <uncovered User Story>   # only when the story-coverage check found gaps
 
-下一步：需要你手动触发 `/rail-build`。
+下一步：需要你手动触发 `/rail-build <feature-slug>`。上下文较重时可开新会话执行。
 ```
 
 Rules for filling it:
 
 - `**描述**` — compress the effort into 1–2 sentences (~30–80 Chinese characters) from the spec opening / Problem→Solution; do not paste the whole Problem section
 - `**已发布**` — list the whole effort tree: `align.md` only if it exists on disk, then `spec.md`, then every `tasks/NN-*.md` just written
-- `align.md` / `spec.md` stay flat path bullets (no nested metadata)
+- keep the bare `<feature-slug>` line under `**已发布**`
+- render each file as a markdown link whose **label** is the short name relative to the effort directory (`align.md`, `spec.md`, `tasks/<NN>-<task-slug>.md`) and whose **target** is the repo-relative path `docs/monorail/<feature-slug>/…`
+- `align.md` / `spec.md` stay flat linked bullets (no nested metadata)
 - each task path expands exactly three nested keys, in order: `Title:`, `Status:`, `Blocked by:`
 - `**警告**` appears only when at least one numbered User Story is uncovered; otherwise omit the whole section
-- the final line is exactly `下一步：需要你手动触发 `/rail-build`。` — no serial/worktree/foreign-pack digressions here
+- the final line is exactly `下一步：需要你手动触发 `/rail-build <feature-slug>`。上下文较重时可开新会话执行。` — substitute the real slug; no serial/worktree/foreign-pack digressions here
 
 Near context limits: stop and suggest `/rail-pass` instead of publishing a degraded slice set.

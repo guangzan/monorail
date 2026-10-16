@@ -50,7 +50,7 @@ Read the file at the given path. The user normally passes the path or task numbe
 ## Frontier
 
 - **Implementation tasks:** `Status: open`, every `Blocked by` target is `Status: done`, not yet `claimed`; lowest `NN` wins
-- **Serial `/rail-build`:** tasks run **sequentially in one session** (claim each first; one worktree, no parallel writers) — see `/rail-build`
+- **Serial `/rail-build`:** tasks run **sequentially in one session by default** (claim each first; one worktree, no parallel writers); start in a fresh session when the planning context is already heavy — see `/rail-build`
 - **Parallel `/rail-build`:** only on distinct frontier tasks; **one git worktree per task** (claim on the primary worktree first). Same working tree must not run two builds at once — see `/rail-build` Parallel builds
 
 ## Adequacy for `/rail-spec`

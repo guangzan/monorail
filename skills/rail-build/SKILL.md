@@ -1,12 +1,12 @@
 ---
 name: rail-build
-description: Implement docs/monorail tasks serially in one session — drive rail-tdd at agreed seams, then commit.
+description: Implement docs/monorail tasks serially in one session by default — drive rail-tdd at agreed seams, then commit. Prefer a fresh session when the calling context is already heavy.
 disable-model-invocation: true
 ---
 
 # Rail Build
 
-Implement tasks from `docs/monorail/<feature>/tasks/`. **One session, serial run**: after a task goes green, continue to the next frontier task in the **same** session — no fresh session, no check-ins or questions between tasks. Defaults: run to queue-clear, **one commit per task** on the current branch. The skill never asks about run length or commit policy — the user states any deviation (review pause, no-commit, narrower run) in their command and the agent honors it.
+Implement tasks from `docs/monorail/<feature>/tasks/`. Invoke as `/rail-build <feature-slug>`. **Serial run in one session by default**: after a task goes green, continue to the next frontier task in the **same** build session — no check-ins or questions between tasks. When the planning-session context is already heavy, start the build in a **fresh session** instead of reusing that window. Defaults: run to queue-clear, **one commit per task** on the current branch. The skill never asks about run length or commit policy — the user states any deviation (review pause, no-commit, narrower run) in their command and the agent honors it.
 
 Confirm with the shell before concluding it is missing (`ls docs/monorail/work-tracker.md`, or read the path directly) — search tools skip gitignored paths, so an empty Glob/Grep result is **not** evidence of absence. If it is missing on disk, tell the user to run `/rail-setup` and stop.
 
@@ -28,7 +28,7 @@ Never run two tasks in the same working tree **concurrently** — serial runs ar
 
 ## Serial run (one session, task after task)
 
-The default is **one prolonged session**: green tasks keep coming — one working tree, one commit per task, no new sessions. A serial run is throughput, not parallelism; parallel execution still requires worktrees (next section).
+The default is **one prolonged build session**: green tasks keep coming — one working tree, one commit per task, no new sessions mid-run. Starting that build in a **fresh session** is the recommended escape hatch when the planning context is already heavy; it is optional, not required. A serial run is throughput, not parallelism; parallel execution still requires worktrees (next section).
 
 A serial run is the default once build starts — **ask nothing**: no up-front question about run length or commit policy, no check-ins mid-run. Run to queue-clear and one commit per task are the defaults; the user can narrow or override them anytime ("just this task", "stop after task k", "don't commit", "pause between tasks") — honor that statement, never prompt for it.
 
@@ -75,7 +75,7 @@ For each task in order:
 - Context degraded (compaction keeps firing, reasoning quality drops, harness warns) → stop the run; hand the next task to a fresh implementer sub-agent or write `/rail-pass`. The `## Comments` run lines resume the run.
 - Spec/task wrong → stop the run; same rule as a single task (`/rail-align`, leave `claimed`/`open`, never `done`).
 - User narrowed or ended the run → stop at that point and report where you left off (what's `done`, what's next).
-- Harness poor fit for long sessions → fall back to one-task-per-fresh-session mode. That is the escape hatch, not the default.
+- Harness poor fit for long sessions → fall back to one-task-per-fresh-session mode. That is the mid-run escape hatch, not the default; prefer starting the whole build in a fresh session when the planning context is already heavy.
 
 `done` still means green at the task's `Seams:`, per task — a partially implemented task is not `done`. Run the full suite once at the end of the run.
 
