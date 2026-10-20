@@ -25,7 +25,7 @@ A hard template. Every question must have exactly this structure:
 ```
 **问题：** <question text>
 
-**推荐：X**
+**推荐：A**
 
 - **A.** <conclusion>.<one line of reason>
 - **B.** …
@@ -33,9 +33,10 @@ A hard template. Every question must have exactly this structure:
 
 Constraints:
 
-- The `**问题：**` line carries the question; the `**推荐：X**` line is separate and follows it
-- `X` must be one of the listed options — never an unlisted alternative, never "none of the above"
-- Options are prefixed `- **A.** `, `- **B.** `, and so on
+- The `**问题：**` line carries the question; the `**推荐：A**` line is separate and follows it
+- **A is always the recommended option.** Write the recommended answer first and label it **A** — never list it in a later slot
+- `**推荐：A**` is fixed text — the recommendation line never names a letter other than **A**
+- Options are prefixed `- **A.** `, `- **B.** `, and so on, starting from the recommended one
 - Option length is unconstrained — expand as the problem warrants
 - No other phrasing of a question is permitted
 

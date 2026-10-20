@@ -22,7 +22,7 @@ If map mode's first breadth pass finds **no fog**, do not create a map — stay 
 
 ## Light mode (default)
 
-1. Interview one question at a time (same discipline as `/rail-grill`, including its **Question format** — the hard `**问题：**` / `**推荐：X**` / `- **A.** ` template), with recommended answers
+1. Interview one question at a time (same discipline as `/rail-grill`, including its **Question format** — the hard `**问题：**` / `**推荐：A**` / `- **A.** ` template, where **A is always the recommended option**), with recommended answers
 2. Actively maintain domain docs (paths from `docs/monorail/domain.md`):
    - Challenge terms against `docs/monorail/CONTEXT.md`
    - Sharpen fuzzy language; propose canonical terms
