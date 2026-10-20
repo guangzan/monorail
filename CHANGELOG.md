@@ -1,5 +1,15 @@
 # monorail
 
+## 0.11.0
+
+### Minor Changes
+
+- [`773fb2d`](https://github.com/guangzan/monorail/commit/773fb2d8adff395b849b0bc8655bc594139709bb) Thanks [@guangzan](https://github.com/guangzan)! - `/rail-align` 回到单一 light 模式：删掉 map 模式（含 `map-mode.md`、`decisions/` ticket 与 `notes/` 那套持久化机制），winning 行为是一次会话内把决策树问完、落盘 `align.md`、再进 `/rail-spec`。`/rail-spec` 的 adequacy gate 现在只认 `align.md`（本会话刚谈完未落盘仍可，但必须先写 `align.md`）；`/rail-slice`、`/rail-pass`、`/rail-build`、`work-tracker.md` 模板、README 与 yaml 的 map 引用一并清除。
+
+### Patch Changes
+
+- [`aef2d25`](https://github.com/guangzan/monorail/commit/aef2d258a5db8580a55e09228e6c763743be8ea0) Thanks [@guangzan](https://github.com/guangzan)! - 提问模板中推荐选项恒为 **A**：`/rail-grill` 的 Question format 推荐行固定为 `**推荐：A**`，并明确推荐答案必须写在第一个选项、不得排在 B/C 之后；`/rail-align` 的 light 模式引用同步对齐。
+
 ## 0.10.0
 
 ### Minor Changes
