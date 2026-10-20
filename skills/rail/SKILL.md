@@ -11,8 +11,8 @@ A **flow** is a path through skills. Most work follows the **main chain**.
 ## Main chain: idea → ship
 
 1. **`/rail-setup`** — once per repo (all rail docs under `docs/monorail/`)
-2. **`/rail-align`** — light grilling → writes `align.md`; map mode if foggy/multi-session
-3. **`/rail-spec`** — write `docs/monorail/<feature>/spec.md` from `align.md` and/or a cleared map (refuses empty context)
+2. **`/rail-align`** — light grilling → writes `align.md`
+3. **`/rail-spec`** — write `docs/monorail/<feature>/spec.md` from `align.md` (refuses empty context)
 4. **`/rail-slice`** — write `tasks/NN-*.md` with blockers
 5. **`/rail-build`** — user-triggered as `/rail-build <feature-slug>`; runs frontier tasks **serially in one session by default** (implemented inline in the main session; a fresh implementer sub-agent only on a hand-off trigger — unfamiliar/wide territory or degraded context). When the planning-session context is already heavy, open a **fresh session** for the build. Concurrent builds require **separate git worktrees** (see `rail-build`)
 
@@ -20,15 +20,14 @@ A **flow** is a path through skills. Most work follows the **main chain**.
 
 **align → spec → slice** is one planning chain. When a stage finishes successfully in this session, **continue the next stage in the same session** by reading and following that skill's `SKILL.md` — do **not** stop and ask the user to type the next `/rail-*`. One exception: **spec → slice is gated** — after writing `spec.md`, `/rail-spec` stops and asks once (continue slicing now / revise the spec / pause) and never slices without that confirmation.
 
-- Light align writes `align.md` → continue `/rail-spec` → gate → continue `/rail-slice` (on confirm)
-- Cleared map (no open tickets / fog) → continue `/rail-spec` → gate → continue `/rail-slice` (on confirm)
-- Standalone `/rail-spec` writes `spec.md` → gate; `/rail-slice` ends the planning chain (suggest `/rail-build <feature-slug>` only)
+Align writes `align.md` → continue `/rail-spec` → gate → continue `/rail-slice` (on confirm)
+Standalone `/rail-spec` writes `spec.md` → gate; `/rail-slice` ends the planning chain (suggest `/rail-build <feature-slug>` only)
 
 **Do not auto-continue into `/rail-build`** — build stays **user-triggered** as `/rail-build <feature-slug>`: the planning chain ends at slice so you can review the task list before implementation starts. Prefer a **fresh session** when the planning context is already heavy; otherwise the same session is fine. Once a build starts, it runs tasks **serially in that session** — finishing one task continues to the next frontier task with **no context-clearing between tasks** (tasks run inline by default; a fresh implementer sub-agent takes over only when territory is unfamiliar/wide or the run's context degrades). Builds **ask nothing**: defaults are run to queue-clear with **one commit per task**; the user states any deviation (review pause, no-commit, narrower run) in their command. If the run's context degrades mid-build, `/rail-pass` or a fresh sub-agent / session resumes it. To run several builds at once, set up **one git worktree per task** first — more sessions on the same cwd are not parallel-safe.
 
-**Stop auto-continue when:** the user asked to stop after this stage; context is near limits (use `/rail-pass`); or an adequacy / map / fail-closed gate says stop.
+**Stop auto-continue when:** the user asked to stop after this stage; context is near limits (use `/rail-pass`); or an adequacy / fail-closed gate says stop.
 
-If the window breaks mid-chain, durable `align.md` / map / `spec.md` still feed the next skill when the user resumes.
+If the window breaks mid-chain, durable `align.md` / `spec.md` still feed the next skill when the user resumes.
 
 ## In-pack handoffs only
 
@@ -44,10 +43,6 @@ Handoffs (auto-continue or suggest) use the **next rail skill by exact name** (`
 ## Vocabulary underneath
 
 - `/rail-tdd` — red-green-refactor (also used inside build)
-
-## Map ticket types (not separate skills)
-
-In `/rail-align` **map mode**, decision tickets may be `Type: decision | research | prototype` (see `rail-align/map-mode.md`). There is no `/rail-research` or `/rail-prototype` skill.
 
 ## Not in this pack (yet)
 

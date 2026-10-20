@@ -24,19 +24,15 @@ Decide whether a rail doc exists — and list `docs/monorail/` contents — with
 
 - One feature/effort per directory: `docs/monorail/<feature-slug>/`
 - **Slug naming**: a user-named slug is used as-is (no prefix); an agent-invented slug is `YYYY-MM-DD-NN-<kebab>` (`NN` = the day's global sequence `01`, `02`, … — count today's existing date-prefixed effort dirs + 1). The date prefix sorts efforts chronologically and prevents collisions
-- Light-align output: `docs/monorail/<feature-slug>/align.md` — required before `/rail-spec` when there is no cleared map
+- Align output: `docs/monorail/<feature-slug>/align.md` — required before `/rail-spec`
 - Session pass (optional): `docs/monorail/<feature-slug>/pass-<date>.md` — from `/rail-pass`
 - Spec: `docs/monorail/<feature-slug>/spec.md`
 - Implementation tasks: `docs/monorail/<feature-slug>/tasks/<NN>-<slug>.md`, numbered from `01`
   - Each task file carries `Seams:` (the code-anchored seams from the spec's `## Testing Decisions` that apply to that task) and optional `Touchpoints:` (files it will touch); `/rail-build` consumes both (see `/rail-slice`, `/rail-build`)
-- Decision tickets (map mode): `docs/monorail/<feature-slug>/decisions/<NN>-<slug>.md`
-- Research notes (map mode): `docs/monorail/<feature-slug>/notes/<NN>-<slug>.md` — required when a `Type: research` ticket is resolved
-- Map: `docs/monorail/<feature-slug>/map.md`
-- Keep align, map, spec, and tasks under the **same** `<feature-slug>` for one effort (planning chain stays in that directory)
-- **New** `/rail-align` (light persist or map charting) always opens a **new** `<feature-slug>/` — never ask the user for the slug; never write into another effort's directory (link prior aligns from Domain pointers if needed). Map **work-through** stays on the existing map's slug
+- Keep align, spec, and tasks under the **same** `<feature-slug>` for one effort (planning chain stays in that directory)
+- **New** `/rail-align` always opens a **new** `<feature-slug>/` — never ask the user for the slug; never write into another effort's directory (link prior aligns from Domain pointers if needed)
 - Triage/status is a `Status:` line near the top of each ticket file
 - Implementation task status: `open` | `claimed` | `done` (`done` implies a `## Comments` done-gate block — see `/rail-build`)
-- Decision ticket status: `open` | `claimed` | `resolved`
 - Comments append under a `## Comments` heading
 
 ## When a skill says "publish to the work tracker"
@@ -57,17 +53,6 @@ Read the file at the given path. The user normally passes the path or task numbe
 
 `/rail-spec` may write `spec.md` only when at least one of these holds for the slug:
 
-- `align.md` exists (from light `/rail-align`), or
-- `map.md` is clear (no open decision tickets; Not yet specified empty / only out-of-scope) with settled decisions folded from `decisions/`
+- `align.md` exists (from `/rail-align`)
 
-`docs/monorail/CONTEXT.md` / ADRs alone are not enough. Handoff files enrich but do not replace align/map.
-
-## Map-mode operations (`/rail-align` map mode)
-
-Resolve map tickets by invoking `/rail-align` in map mode (procedures live in that skill's `map-mode.md` — not duplicated here). Summary:
-
-- **Map**: `docs/monorail/<feature-slug>/map.md` — Destination / Notes / Decisions so far / Not yet specified / Out of scope
-- **Ticket**: `docs/monorail/<feature-slug>/decisions/NN-<slug>.md` with `Type: decision | research | prototype`, `Status:`, optional `Blocked by:`
-- **Blocking**: `Blocked by: NN, NN` near the top. Unblocked when every listed decision file is `Status: resolved`
-- **Claim**: set `Status: claimed` before work
-- **Resolve**: follow `Type` procedures via `/rail-align` map mode; append under `## Answer`, set `Status: resolved`, append a one-line gist+link to the map's Decisions so far; for `research`, also write `notes/NN-<slug>.md`
+`docs/monorail/CONTEXT.md` / ADRs alone are not enough. Handoff files enrich but do not replace `align.md`.

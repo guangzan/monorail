@@ -1,5 +1,5 @@
 interface:
   display_name: "Rail Align"
-  short_description: "Align on a plan — light or map mode"
+  short_description: "Align on a plan — light grilling"
 policy:
   allow_implicit_invocation: false
