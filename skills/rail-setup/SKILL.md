@@ -44,9 +44,10 @@ Write immediately after presenting — no confirmation, no waiting for edits. Sh
 
 **Pick file for Agent skills block:**
 
-- If `CLAUDE.md` exists, edit it
+- If either file already has the block, leave both untouched and report where it lives
 - Else if `AGENTS.md` exists, edit it
-- If neither exists, ask which to create — do not pick for them
+- Else if `CLAUDE.md` exists, edit it
+- If neither exists, create `AGENTS.md` — do not ask
 - Never create both
 
 **Agent skills block** (adapt if work root changed) — include these bullets verbatim in the target file:
