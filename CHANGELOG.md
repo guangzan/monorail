@@ -1,5 +1,11 @@
 # monorail
 
+## 0.12.0
+
+### Minor Changes
+
+- [`6222973`](https://github.com/guangzan/monorail/commit/62229737be0cbfdd3c786ad555b5ba9b610d16eb) Thanks [@guangzan](https://github.com/guangzan)! - `/rail-spec` now treats the test-seam decision as an explicit blocking gate before writing `spec.md`: it asks with the standard A/B question format, waits for confirmation, and only then writes `## Testing Decisions`. The post-spec slice go/no-go restates the confirmed seam and never asks it again.
+
 ## 0.11.1
 
 ### Patch Changes
