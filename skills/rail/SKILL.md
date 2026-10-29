@@ -18,7 +18,7 @@ A **flow** is a path through skills. Most work follows the **main chain**.
 
 ### Planning chain (auto-continue)
 
-**align → spec → slice** is one planning chain. When a stage finishes successfully in this session, **continue the next stage in the same session** by reading and following that skill's `SKILL.md` — do **not** stop and ask the user to type the next `/rail-*`. One exception: **spec → slice is gated** — after writing `spec.md`, `/rail-spec` stops and asks once (continue slicing now / revise the spec / pause) and never slices without that confirmation.
+**align → spec → slice** is one planning chain. When a stage finishes successfully in this session, **continue the next stage in the same session** by reading and following that skill's `SKILL.md` — do **not** stop and ask the user to type the next `/rail-*`. Two exceptions: `/rail-spec` confirms the test seam once **before writing `spec.md`** and waits for the answer; then **spec → slice is gated** — after writing `spec.md`, `/rail-spec` stops and asks once (continue slicing now / revise the spec / pause) and never slices without that confirmation.
 
 Align writes `align.md` → continue `/rail-spec` → gate → continue `/rail-slice` (on confirm)
 Standalone `/rail-spec` writes `spec.md` → gate; `/rail-slice` ends the planning chain (suggest `/rail-build <feature-slug>` only)

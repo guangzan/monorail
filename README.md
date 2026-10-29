@@ -30,7 +30,7 @@ In each business repo, run `/rail-setup` once before other rail engineering skil
 | ------------------------------------------ | ---------------------------------------------------------------------------------- |
 | [`rail-setup`](skills/rail-setup/SKILL.md) | Configure all rail docs under `docs/monorail/`                                     |
 | [`rail-align`](skills/rail-align/SKILL.md) | Grill an idea into `align.md`                                                       |
-| [`rail-spec`](skills/rail-spec/SKILL.md)   | Write `spec.md` from `align.md`; stop for your go/no-go before slice              |
+| [`rail-spec`](skills/rail-spec/SKILL.md)   | Confirm the test seam, write `spec.md`, then stop for your go/no-go before slice   |
 | [`rail-slice`](skills/rail-slice/SKILL.md) | Break `spec.md` into `tasks/NN-*.md` with blockers                                 |
 | [`rail-build`](skills/rail-build/SKILL.md) | Implement tasks serially in one session (fresh session when context is heavy; parallel ⇒ worktrees) |
 

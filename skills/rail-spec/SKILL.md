@@ -48,7 +48,7 @@ Before writing, run a **read-only grounding pass** so the spec's seams are ancho
 - Explore the codebase. Use `docs/monorail/CONTEXT.md` vocabulary; respect ADRs under `docs/monorail/adr/`.
 - Run a read-only grounding sweep **inline in the main session by default** — usually a few reads (`grep` + `read`): **code map** (paths/types/call chains named or implied), **test / seam precedents** (existing tests and public boundaries near those paths), **domain docs** (CONTEXT, ADRs, coding standards). Offload to read-only sub-agents — up to three in parallel, or sequentially — only when the territory is genuinely unfamiliar or wide enough to justify the spawn; skip a scope whose inputs clearly do not exist. Always run code map + test precedents when any code exists.
 - Write the validated outcome into `## Testing Decisions`: external behaviour, then seams — prefer existing seams, highest seam, few seams — each with a pointer to the file/test that anchors it. Do not leave seams as a sketch.
-- **Confirm seams with the user once, here** — this is the single seam decision; downstream build only re-raises a seam on a real contradiction.
+- **Confirm seams with the user once, here — before writing `spec.md`.** Present the grounded seam proposal using the `/rail-grill` Question format (`**问题：**` / `**推荐：A**` / `- **A.** `), recommend the highest existing seam, and **wait for the answer**. Do not write `spec.md` until the user confirms. If they reject the proposal, revise it and ask again. This is the single seam decision; downstream build only re-raises a seam on a real contradiction.
 
 ### 5. Gap-closing only (not a full grill)
 
@@ -58,7 +58,7 @@ If durable sources exist but a **few** gaps block a coherent spec, ask only thos
 
 Write `docs/monorail/<feature-slug>/spec.md` using the template below.
 
-**Stop and ask once before slicing.** After writing, present a short digest of the spec (Problem / Solution / Stories overview, the single seam decision from `## Testing Decisions`, Out of scope, and the `spec.md` path), then ask whether to continue into `/rail-slice` in this same session. Wait for the answer.
+**Stop and ask once before slicing.** After writing, present a short digest of the spec (Problem / Solution / Stories overview, the single seam decision from `## Testing Decisions`, Out of scope, and the `spec.md` path), then ask whether to continue into `/rail-slice` in this same session. Wait for the answer. This go/no-go only restates the seam already confirmed in §4 — do not ask the seam question again.
 
 - **Continue** → read and follow `/rail-slice` for this same `<slug>` in this same session (writes `docs/monorail/<slug>/tasks/NN-*.md`)
 - **Revise the spec** → stay on the spec; iterate `spec.md` in place from the feedback (if a change contradicts a settled `align.md` decision, update that durable source too), then return to this go/no-go

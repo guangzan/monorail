@@ -30,7 +30,7 @@ npx skills add guangzan/monorail
 | ------------------------------------------ | ----------------------------------------------------------------- |
 | [`rail-setup`](skills/rail-setup/SKILL.md) | 配置：所有 rail 文档统一在 `docs/monorail/`                       |
 | [`rail-align`](skills/rail-align/SKILL.md) | 把需求拷问成 `align.md`                                           |
-| [`rail-spec`](skills/rail-spec/SKILL.md)   | 从 `align.md` 写 `spec.md`；写完停下待你确认再切片             |
+| [`rail-spec`](skills/rail-spec/SKILL.md)   | 先确认测试接缝，再写 `spec.md`；写完停下待你确认再切片         |
 | [`rail-slice`](skills/rail-slice/SKILL.md) | 将 `spec.md` 拆成带 blockers 的 `tasks/NN-*.md`                   |
 | [`rail-build`](skills/rail-build/SKILL.md) | 同会话串行实现 tasks（上下文较重可开新会话；并发须 worktree）     |
 
